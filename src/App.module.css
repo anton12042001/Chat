@@ -1,0 +1,13 @@
+.appContainer{
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+    grid-template-rows: 72px 1fr;
+    grid-template-areas:
+    "h h h"
+    "n c c";
+}
+.appWrapperContent {
+    padding: 0 0 120px 0;
+    background-color: rgba(92, 54, 127, 0.05);
+    grid-area: c;
+}
