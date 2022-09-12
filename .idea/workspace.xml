@@ -34,6 +34,11 @@
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2021.3.1\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\ahtoh\WebstormProjects\app\Chat\src\component\Navbar\NewDialogsForm" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -44,7 +49,8 @@
       <updated>1662782801377</updated>
       <workItem from="1662782802595" duration="1649000" />
       <workItem from="1662858095352" duration="7286000" />
-      <workItem from="1662865967427" duration="1030000" />
+      <workItem from="1662865967427" duration="1725000" />
+      <workItem from="1662944263844" duration="8686000" />
     </task>
     <servers />
   </component>

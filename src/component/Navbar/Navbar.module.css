@@ -1,4 +1,6 @@
 .navbar{
     grid-area: n;
     background: bisque;
+    height: 100%;
+    position: relative;
 }
