@@ -25,7 +25,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../sfuCompetition/src/firebase.js" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -50,7 +50,9 @@
       <workItem from="1662782802595" duration="1649000" />
       <workItem from="1662858095352" duration="7286000" />
       <workItem from="1662865967427" duration="1725000" />
-      <workItem from="1662944263844" duration="8686000" />
+      <workItem from="1662944263844" duration="8741000" />
+      <workItem from="1663029743184" duration="5189000" />
+      <workItem from="1663046380160" duration="799000" />
     </task>
     <servers />
   </component>
