@@ -16,7 +16,6 @@ export const firebaseConfig = {
     measurementId: process.env.REACT_APP_FIREBASE_MESUREMENT_ID,
     databaseURL: process.env.REACT_APP_FIREBASE_DATABASE_URL,
 };
-console.log(firebaseConfig)
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const database = getDatabase(app);

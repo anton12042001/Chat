@@ -1,6 +1,6 @@
 import React from 'react';
 import Register from "./Register";
-import {createUserWithEmailAndPassword, getAuth,updateProfile} from "firebase/auth";
+import {createUserWithEmailAndPassword, getAuth, updateProfile} from "firebase/auth";
 import {useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import cl from './Register.module.css'
@@ -15,17 +15,11 @@ const RegisterContainer = () => {
     const handleRegister = (email, password) => {
         createUserWithEmailAndPassword (auth, email, password)
             .then(({user}) => {
-
-//todo сделать нормальное имя
                 updateProfile(auth.currentUser, {
-                    displayName: "Безымянный абитуриент", photoURL: null
-                }).then(() => {
-
-                }).catch((error) => {
-
-                });
-
-                sendMessagesAPI().then(() => {
+                    displayName: "Юзер", photoURL: null
+                })
+                sendMessagesAPI()
+                    .then(() => {
                     navigate('/mailVerification')
                 })
                 (email) && navigate('/content')
