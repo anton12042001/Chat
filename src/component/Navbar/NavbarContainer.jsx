@@ -1,37 +1,19 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import Navbar from "./Navbar";
-import {getDatabase, ref, set, child, get} from "firebase/database";
 import {useSelector} from "react-redux";
+import {addDoc, collection, getFirestore} from "firebase/firestore";
+import {initializeApp} from "firebase/app";
+import {firebaseConfig} from "../../firebase";
 
 const NavbarContainer = () => {
-    const {id,email} = useSelector(state => state.user)
 
-    // useEffect(() => {
-    //     const dbRef = ref(getDatabase());
-    //     get(child(dbRef, `dialogs/`))
-    //         .then((snapshot) => {
-    //         if (snapshot.exists()) {
-    //             console.log(snapshot.val());
-    //         } else {
-    //             console.log("No data available");
-    //         }
-    //     }).catch((error) => {
-    //         console.error(error);
-    //     });
-    // },[])
+    const {id,email} = useSelector(state => state.user)
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
 
 
 //todo разобраться что тут происходит
-    const createNewDialogs = ({dialogsName}) => {
-        const db = getDatabase();
-        set(ref(db, `dialogs/${dialogsName}`), {
-            dialogsName: dialogsName,
-            admin: id,
-            users: {
-                id
-            }
-        });
-    }
 
 
     return (

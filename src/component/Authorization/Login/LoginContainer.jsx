@@ -4,11 +4,13 @@ import {loginAPI, sendMessagesAPI} from "../../api/authAPI";
 import {setUser} from "../../../reduxToolkit/slices/userSlice";
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
-import {doc, getDoc, getFirestore,setDoc, updateDoc } from "firebase/firestore";
+import {doc, getDoc, getFirestore, updateDoc} from "firebase/firestore";
 import {initializeApp} from "firebase/app";
 import {firebaseConfig} from "../../../firebase";
+import {firestoreDocumentAPI, setDocumentAPI, updateDocumentAPI} from "../../api/firestoreDocumentAPI";
 
 const LoginContainer = () => {
+
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
     const dispatch = useDispatch()
@@ -39,20 +41,9 @@ const LoginContainer = () => {
                     const docRef = doc(db, "users", `${user.uid}`);
                     const docSnap = await getDoc(docRef);
                     if(!docSnap.exists()){
-                        setDoc(doc(db, "users", `${user.uid}`), {
-                            dialogs:null,
-                            displayName:user.displayName,
-                            email:user.email,
-                            id:user.uid,
-                        })
+                        setDocumentAPI( user.displayName,user.email, user.uid)
                     }else{
-                        const updateProfile = doc(db, "users", `${user.uid}`);
-                        await updateDoc(updateProfile, {
-                            dialogs:null,
-                            displayName:user.displayName,
-                            email:user.email,
-                            id:user.uid,
-                        });
+                         await updateDocumentAPI(user.displayName,user.email, user.uid)
                     }
 //todo отрефакторить эту часть
                 }
