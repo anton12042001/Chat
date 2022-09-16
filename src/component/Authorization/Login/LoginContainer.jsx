@@ -4,26 +4,24 @@ import {loginAPI, sendMessagesAPI} from "../../api/authAPI";
 import {setUser} from "../../../reduxToolkit/slices/userSlice";
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
-import {doc, getDoc, getFirestore, updateDoc} from "firebase/firestore";
-import {initializeApp} from "firebase/app";
-import {firebaseConfig} from "../../../firebase";
-import {firestoreDocumentAPI, setDocumentAPI, updateDocumentAPI} from "../../api/firestoreDocumentAPI";
+import {getDialogs, setUsersInFirestore} from "./loginUtils";
 
 const LoginContainer = () => {
 
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const {emailVerified,email} = useSelector(state => state.user)
+    const {emailVerified, email} = useSelector(state => state.user)
 
-    if(emailVerified && email){
+    if (emailVerified && email) {
         navigate('/home')
     }
 
 
+
+
+
     const handleLogin = (email, password) => {
-        loginAPI(email,password)
+        loginAPI(email, password)
             .then(async ({user}) => {
                 if (user.emailVerified === false) {
                     navigate('/mailVerification')
@@ -37,20 +35,12 @@ const LoginContainer = () => {
                         token: user.accessToken,
                         emailVerified: user.emailVerified
                     }))
-//todo отрефакторить эту часть
-                    const docRef = doc(db, "users", `${user.uid}`);
-                    const docSnap = await getDoc(docRef);
-                    if(!docSnap.exists()){
-                        setDocumentAPI( user.displayName,user.email, user.uid)
-                    }else{
-                         await updateDocumentAPI(user.displayName,user.email, user.uid)
-                    }
-//todo отрефакторить эту часть
+                    await setUsersInFirestore(user.displayName, user.email, user.uid,)
+                    await getDialogs(user.uid,dispatch)
                 }
             })
             .catch(console.error)
     }
-
 
 
     return (

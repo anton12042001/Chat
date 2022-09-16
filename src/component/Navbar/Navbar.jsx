@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import cl from './Navbar.module.css'
 import NewDialogsForm from "./NewDialogsForm/NewDialogsForm";
 
@@ -6,13 +6,11 @@ const Navbar = (props) => {
 
     const [newDialogs,setNewDialogs] = useState(false)
 
+
     const setNewDialogsDB = (data) => {
         props.createNewDialogs(data)
         setNewDialogs(false)
     }
-
-
-
 
     return (
         <div className={cl.navbar}>

@@ -17,9 +17,15 @@ export const setDocumentAPI = (displayName,email,uid) => {
 export const updateDocumentAPI = (displayName,email,uid) => {
     const updateProfile = doc(db, "users", `${uid}`);
      updateDoc(updateProfile, {
-        dialogs:null,
         displayName:displayName,
         email:email,
         id:uid,
+    });
+}
+export const updateDocumentDialogsAPI = (dialogsId,uid) => {
+    debugger
+    const updateProfile = doc(db, "users", `${uid}`);
+    updateDoc(updateProfile, {
+        dialogs:dialogsId
     });
 }

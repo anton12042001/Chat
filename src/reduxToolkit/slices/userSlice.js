@@ -4,6 +4,7 @@ const initialState = {
     email: null,
     id: null,
     token: null,
+    dialogs:null
 }
 
 
@@ -21,9 +22,14 @@ const userSlice = createSlice({
             state.email = null
             state.id = null
             state.token = null
+            state.dialogs = null
+        },
+        setDialogs(state,action) {
+            debugger
+            state.dialogs = action.payload
         }
     },
 })
-export const {setUser,removeUser} = userSlice.actions
+export const {setUser,removeUser,setDialogs} = userSlice.actions
 
 export default  userSlice.reducer
