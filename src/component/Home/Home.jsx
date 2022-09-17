@@ -1,22 +1,15 @@
-import React, {useEffect} from 'react';
-import {useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom";
+import React from 'react';
+import {useEffect} from "react";
+import {NavbarShowDialogs} from "../Navbar/NavbarShowDialogs";
 
-const Home = () => {
-
-
-    const {email,} = useSelector(state => state.user)
-    const navigate = useNavigate()
+const Home = (dialogs) => {
 
     useEffect(() => {
-        if(!email){
-            navigate('/authorization')
-        }
+        NavbarShowDialogs(dialogs)
+            .then(() => {
+
+            })
     },[])
-
-
-
-
 
     return (
         <div>

@@ -23,7 +23,6 @@ export const updateDocumentAPI = (displayName,email,uid) => {
     });
 }
 export const updateDocumentDialogsAPI = (dialogsId,uid) => {
-    debugger
     const updateProfile = doc(db, "users", `${uid}`);
     updateDoc(updateProfile, {
         dialogs:dialogsId

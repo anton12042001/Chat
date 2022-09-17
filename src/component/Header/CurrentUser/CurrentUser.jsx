@@ -2,6 +2,7 @@ import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {removeUser} from "../../../reduxToolkit/slices/userSlice";
 import {useNavigate} from "react-router-dom";
+import {removeDialogs} from "../../../reduxToolkit/slices/dialogsSlice";
 
 const CurrentUser = () => {
 
@@ -11,6 +12,7 @@ const CurrentUser = () => {
 
     const Logout = () => {
         dispatch(removeUser())
+        dispatch(removeDialogs())
     }
 
     const redirectToLogin = () => {

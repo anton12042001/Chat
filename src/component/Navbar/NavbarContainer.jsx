@@ -1,16 +1,18 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Navbar from "./Navbar";
 import {useSelector} from "react-redux";
-import {addDoc, collection, doc, getDoc, getFirestore} from "firebase/firestore";
+import {addDoc, collection, getFirestore, } from "firebase/firestore";
 import {initializeApp} from "firebase/app";
 import {firebaseConfig} from "../../firebase";
-import {useEffect} from "react";
+
 
 const NavbarContainer = () => {
 
-    const {id,email} = useSelector(state => state.user)
+    const {id} = useSelector(state => state.user)
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
+
+
 
 
     const createNewDialogs = async ({dialogsName}) => {

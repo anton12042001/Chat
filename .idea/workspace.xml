@@ -40,7 +40,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../sfuCompetition/src/components/UI/MyInputSendProject/MyInputSendProject.jsx" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../sfuCompetition/src/components/UI/Loader/Loader.module.css" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -69,7 +69,8 @@
       <workItem from="1663029743184" duration="5189000" />
       <workItem from="1663046380160" duration="1067000" />
       <workItem from="1663116650014" duration="9305000" />
-      <workItem from="1663289100660" duration="10115000" />
+      <workItem from="1663289100660" duration="10314000" />
+      <workItem from="1663380511658" duration="6442000" />
     </task>
     <servers />
   </component>
