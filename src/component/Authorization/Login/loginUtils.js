@@ -3,7 +3,7 @@ import {setDocumentAPI, updateDocumentAPI, updateDocumentDialogsAPI} from "../..
 
 import {initializeApp} from "firebase/app";
 import {firebaseConfig} from "../../../firebase";
-import {setDialogs} from "../../../reduxToolkit/slices/dialogsSlice";
+import {setDialogs} from "../../../reduxToolkit/slices/dialogsIdSlice";
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);

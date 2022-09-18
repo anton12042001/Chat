@@ -1,12 +1,13 @@
 import {createSlice} from "@reduxjs/toolkit";
 
 const initialState = {
-    dialogs:null
+    dialogs:null,
+
 }
 
 
 
-const dialogsSlice = createSlice({
+const dialogsIdSlice = createSlice({
     name: 'dialogs',
     initialState,
     reducers: {
@@ -18,6 +19,6 @@ const dialogsSlice = createSlice({
         }
     },
 })
-export const {setDialogs,removeDialogs} = dialogsSlice.actions
+export const {setDialogs,removeDialogs,setDialogsForShow} = dialogsIdSlice.actions
 
-export default  dialogsSlice.reducer
+export default  dialogsIdSlice.reducer
