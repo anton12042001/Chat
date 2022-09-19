@@ -1,10 +1,8 @@
 import {createSlice} from "@reduxjs/toolkit";
 
 const initialState = {
-    admin: null,
-    dialogsName: null,
-    users: null,
-    dialogsId: null,
+    dialogsForShow: [],
+
 }
 
 
@@ -13,20 +11,13 @@ const showDialogs = createSlice({
     initialState,
     reducers: {
         setDialogsForShow(state, action) {
-            debugger
-            state.admin = action.payload.admin
-            state.dialogsName = action.payload.dialogsName
-            state.users = action.payload.users
+            state.dialogsForShow.push(action.payload)
         },
-        setDialogsIdForShow(state, action) {
-            debugger
-            state.dialogsId = action.payload
-        },
-        removeDialogs(state, action) {
-
+        removeDialogsList(state, action) {
+            state.dialogsForShow = []
         }
     },
 })
-export const {removeDialogs, setDialogsForShow,setDialogsIdForShow} = showDialogs.actions
+export const {removeDialogsList, setDialogsForShow,} = showDialogs.actions
 
 export default showDialogs.reducer

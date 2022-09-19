@@ -19,6 +19,6 @@ const dialogsIdSlice = createSlice({
         }
     },
 })
-export const {setDialogs,removeDialogs,setDialogsForShow} = dialogsIdSlice.actions
+export const {setDialogs,removeDialogs,} = dialogsIdSlice.actions
 
 export default  dialogsIdSlice.reducer

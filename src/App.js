@@ -6,9 +6,15 @@ import Header from "./component/Header/Header";
 import AuthorizationContainer from "./component/Authorization/AuthorizationContainer";
 import EmailVerificationContainer from "./component/EmailVerification/EmailVerificationContainer";
 import NavbarContainer from "./component/Navbar/NavbarContainer";
+import {useSelector} from "react-redux";
+import Loader from "./component/UI/Loader";
+import DialogsContainer from "./component/Dialogs/DialogsContainer";
 
 
-function App() {
+const App = () =>  {
+
+
+
   return (
     <div className={cl.appContainer}>
         <Header/>
@@ -18,6 +24,7 @@ function App() {
               <Route path={'/home'} element={<HomeContainer/>} />
               <Route path={'/authorization'} element={<AuthorizationContainer/>} />
               <Route path={'/mailVerification'} element={<EmailVerificationContainer/>} />
+              <Route path={'/dialogs/:id'} element={<DialogsContainer/>} />
           </Routes>
       </div>
     </div>
