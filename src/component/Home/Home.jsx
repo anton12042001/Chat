@@ -16,6 +16,7 @@ const Home = (dialogs) => {
 
     return (
         <div>
+
             <div>Основная информация и новости</div>
         </div>
     );

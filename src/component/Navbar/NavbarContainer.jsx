@@ -20,8 +20,8 @@ const NavbarContainer = () => {
             dialogsName:dialogsName,
             admin: id,
             users: id
-
         });
+
     }
 
 
