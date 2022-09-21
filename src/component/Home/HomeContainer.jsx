@@ -9,6 +9,7 @@ const HomeContainer = () => {
     const {email} = useSelector(state => state.user)
     const navigate = useNavigate()
 
+
     if(!email){
         navigate("/authorization")
     }

@@ -1,26 +1,22 @@
 import React, {useEffect, useState} from 'react';
 import {useParams} from "react-router-dom"
-import {getDatabase, ref, child, get, set, push} from "firebase/database";
 import Dialogs from "./Dialogs";
+import {addDoc, collection, doc, getFirestore, serverTimestamp, updateDoc} from "firebase/firestore";
+import {initializeApp} from "firebase/app";
+import {firebaseConfig} from "../../firebase";
+import {useSelector} from "react-redux";
+
 
 const DialogsContainer = () => {
 
     const params = useParams()
     const [isMessages, setIsMessages] = useState(false)
+    const {id} = useSelector(state => state.user)
+
 
 
     useEffect(() => {
-        const dbRef = ref(getDatabase());
-        get(child(dbRef, `dialogs/${params.id}`))
-            .then((snapshot) => {
-            if (!snapshot.exists()) {
-                setIsMessages(true)
-            } else {
-                // console.log(snapshot.val())
-            }
-        }).catch((error) => {
-            console.error(error);
-        });
+
     },[])
 
 
@@ -28,27 +24,25 @@ const DialogsContainer = () => {
 
 
 
-    const sendMessage = (body,id,idMessages) => {
-        debugger
+    const sendMessage = async (body) => {
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
 
-        const db = getDatabase();
-        const ref0 = push(ref(db, 'dialogs'));
-        const id0 = ref0.key
+        // const docRef = doc(db, 'objects', 'some-id');
+        // const updateTimestamp = await updateDoc(docRef, {
+        //     timestamp: serverTimestamp()
+        // });
 
+        try {
+            const docRef = await addDoc(collection(db, `dialogs/${params.id}/messages`), {
+                uid:id,
+                text:body,
 
-        set(ref(db, `dialogs/${params.id}/ ${id0}`), {
-                body:body,
-                sender:id
-        })
-            .then(() => {
-                const dbRef = ref(getDatabase());
-                get(child(dbRef, `dialogs/${params.id}/ ${idMessages}`))
-                    .then((snapshot) => {
-                    if (snapshot.exists()) {
-                        console.log(snapshot.val());
-                    }
-                })
-            })
+            });
+            console.log("Document written with ID: ", docRef.id);
+        } catch (e) {
+            console.error("Error adding document: ", e);
+        }
     }
 
 

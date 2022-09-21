@@ -3,5 +3,12 @@
     flex-direction: column;
     justify-content: space-between;
     height: 500px;
+    border: 1px solid black;
+    width: 1050px;
+    margin:  0 0 0 50px
+}
+.sendMessage{
 
+    width: 1050px;
+    margin: 0 0 0 50px;
 }

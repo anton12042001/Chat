@@ -5,13 +5,10 @@ import {useSelector} from "react-redux";
 
 const Dialogs = ({isMessages,sendMessage}) => {
 
-    const {id} = useSelector(state => state.user)
 
 
     const createMessage = (data) => {
-        let idMessages =  new Date().getTime().toString();
-        debugger
-        sendMessage(data.body,id,idMessages)
+        sendMessage(data.body)
     }
 
     return (

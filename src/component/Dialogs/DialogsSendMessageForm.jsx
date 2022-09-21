@@ -1,5 +1,6 @@
 import React from 'react';
 import {useForm} from "react-hook-form";
+import cl from './Dialogs.module.css'
 
 const DialogsSendMessageForm = (props) => {
 
@@ -11,13 +12,12 @@ const DialogsSendMessageForm = (props) => {
 
 
     const onSubmit = (data) => {
-        debugger
         reset()
         props.createMessage(data)
     }
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form className={cl.sendMessage} onSubmit={handleSubmit(onSubmit)}>
             <div>
                 <textarea {...register("body")}/>
             </div>

@@ -1,14 +1,13 @@
-import React from 'react';
-import {useEffect} from "react";
-import {NavbarShowDialogs} from "../Navbar/NavbarShowDialogs";
-import {useDispatch} from "react-redux";
+import React, {useEffect} from 'react';
+import {NavbarShowDialogs} from "./NavbarShowDialogs";
+import {useDispatch, useSelector} from "react-redux";
 
 const Home = (dialogs) => {
-
+    const {dialogsForShow} = useSelector(state => state.showDialogs)
     const dispatch = useDispatch()
 
     useEffect(() => {
-        NavbarShowDialogs(dialogs,dispatch)
+        NavbarShowDialogs(dialogs.dialogs,dispatch,dialogsForShow)
             .then(() => {
 
             })
@@ -16,7 +15,6 @@ const Home = (dialogs) => {
 
     return (
         <div>
-
             <div>Основная информация и новости</div>
         </div>
     );
