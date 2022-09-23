@@ -32,6 +32,8 @@ const LoginContainer = () => {
                     dispatch(setUser({
                         email: user.email,
                         id: user.uid,
+                        displayName:user.displayName,
+                        photoURL: user.photoURL,
                         token: user.accessToken,
                         emailVerified: user.emailVerified
                     }))
