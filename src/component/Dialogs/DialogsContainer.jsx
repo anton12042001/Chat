@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {useParams} from "react-router-dom"
 import Dialogs from "./Dialogs";
-import {addDoc, collection, doc, getFirestore, serverTimestamp, onSnapshot} from "firebase/firestore";
+import {addDoc, collection, getFirestore, onSnapshot, orderBy, query, serverTimestamp, where} from "firebase/firestore";
 import {initializeApp} from "firebase/app";
 import {firebaseConfig} from "../../firebase";
 import {useSelector} from "react-redux";
@@ -17,10 +17,23 @@ const DialogsContainer = () => {
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 
-    useEffect(() => {
-        onSnapshot(doc(db, `dialogs/${params.id}` ), (doc) => {
-            console.log("Current data: ", doc.data());
+
+
+
+
+    useEffect( () => {
+        // onSnapshot(doc(db, `/dialogs/${params.id}` ), (collection) => {
+        //     console.log("Current data: ", collection.data());
+        // });
+        const dialogs = [];
+        const q = query(collection(db, `dialogs/${params.id}/messages`), orderBy('createdAt'));
+        const unsubscribe = onSnapshot(q, (querySnapshot) => {
+
+            querySnapshot.forEach((doc) => {
+                dialogs.push(doc.data());
+            });
         });
+        console.log(dialogs);
     },[])
 
 
