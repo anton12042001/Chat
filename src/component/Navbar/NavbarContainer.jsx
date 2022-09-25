@@ -31,11 +31,11 @@ const NavbarContainer = () => {
             users:id,
         })
 
-        const washingtonRef = doc(db, "users", id);
+        const dialogsRef = doc(db, "users", id);
         let dialogsList = [...dialogs]
         dialogsList.push(docRef.id)
 
-        await updateDoc(washingtonRef, {
+        await updateDoc(dialogsRef, {
             dialogs:dialogsList
         });
         dispatch(setDialogs(dialogsList))
