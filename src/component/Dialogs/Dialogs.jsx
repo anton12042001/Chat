@@ -7,41 +7,55 @@ import {initializeApp} from "firebase/app";
 import {firebaseConfig} from "../../firebase";
 import DialogsMessages from "./DialogsMessages";
 import Loader from "../UI/Loader";
+import {useDispatch, useSelector} from "react-redux";
+import {setMessages} from "../../reduxToolkit/slices/messagesSlice";
 
 
 const Dialogs = ({sendMessage}) => {
 
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
     const params = useParams()
     const [loading, setLoading] = useState(true)
-    let dialogs = [];
+    const dispatch = useDispatch()
+    const {messages} = useSelector(state => state.messages)
+    const {id} = useSelector(state => state.user)
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+
+
     useEffect(() => {
         const q = query(collection(db, `dialogs/${params.id}/messages`), orderBy('createdAt'));
         const unsubscribe = onSnapshot(q, (querySnapshot) => {
-            dialogs = []
+            let dialogs = []
             setLoading(true)
             querySnapshot.forEach((doc) => {
                 dialogs.push(doc.data())
             });
             setLoading(false)
             console.log(dialogs)
+            dispatch(setMessages(dialogs))
         });
     }, [])
-console.log('Все сообщения:  '+ dialogs)
+
+
 
     const createMessage = (data) => {
         sendMessage(data.body)
     }
 
+
+
+
     if (loading) {
         return <Loader/>
     }
+
     return (
         <div>
             <div className={cl.dialogsWindow}>
-                {dialogs.map(m => <DialogsMessages displayName={m.displayName} text={m.text} uid={m.uid}
-                                                               photoURL={m.photoURL}/>)}
+                {messages.map(m => <DialogsMessages displayName={m.displayName} text={m.text} uid={m.uid} id={id}
+                                                 photoURL={m.photoURL}/>)}
             </div>
 
             <DialogsSendMessageForm createMessage={createMessage}/>

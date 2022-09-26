@@ -4,6 +4,7 @@ import {removeUser} from "../../../reduxToolkit/slices/userSlice";
 import {useNavigate} from "react-router-dom";
 import {removeDialogs} from "../../../reduxToolkit/slices/dialogsIdSlice";
 import {removeDialogsList} from "../../../reduxToolkit/slices/showDialogs";
+import {removeMessages} from "../../../reduxToolkit/slices/messagesSlice";
 
 const CurrentUser = () => {
 
@@ -15,6 +16,7 @@ const CurrentUser = () => {
         dispatch(removeUser())
         dispatch(removeDialogs())
         dispatch(removeDialogsList())
+        dispatch(removeMessages())
     }
 
     const redirectToLogin = () => {
