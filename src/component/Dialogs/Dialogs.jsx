@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import cl from "./Dialogs.module.css"
 import DialogsSendMessageForm from "./DialogsSendMessageForm";
-import {collection, getFirestore, onSnapshot, orderBy, query} from "firebase/firestore";
+import {collection, getFirestore, onSnapshot, orderBy, query,limit,} from "firebase/firestore";
 import {useParams} from "react-router-dom";
 import {initializeApp} from "firebase/app";
 import {firebaseConfig} from "../../firebase";
@@ -18,14 +18,13 @@ const Dialogs = ({sendMessage}) => {
     const dispatch = useDispatch()
     const {messages} = useSelector(state => state.messages)
     const {id} = useSelector(state => state.user)
+    const dialogsRef = useRef()
 
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 
-
-
     useEffect(() => {
-        const q = query(collection(db, `dialogs/${params.id}/messages`), orderBy('createdAt'));
+        const q = query(collection(db, `dialogs/${params.id}/messages`), limit(50), orderBy('createdAt',"desc"));
         const unsubscribe = onSnapshot(q, (querySnapshot) => {
             let dialogs = []
             setLoading(true)
@@ -34,7 +33,12 @@ const Dialogs = ({sendMessage}) => {
             });
             setLoading(false)
             console.log(dialogs)
-            dispatch(setMessages(dialogs))
+            dispatch(setMessages(dialogs.reverse()))
+
+
+            console.log(dialogsRef)
+            window.scrollTo(0, dialogsRef.clientHeight)
+
         });
     }, [])
 
@@ -52,8 +56,8 @@ const Dialogs = ({sendMessage}) => {
     }
 
     return (
-        <div>
-            <div className={cl.dialogsWindow}>
+        <div className={cl.container} >
+            <div ref={dialogsRef}  >
                 {messages.map(m => <DialogsMessages displayName={m.displayName} text={m.text} uid={m.uid} id={id}
                                                  photoURL={m.photoURL}/>)}
             </div>

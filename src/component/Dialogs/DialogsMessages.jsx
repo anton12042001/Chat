@@ -1,7 +1,13 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import cl from "./Dialogs.module.css"
 
 const DialogsMessages = ({displayName,text,uid,photoURL, id}) => {
+
+    useEffect(() => {
+        window.scrollTo(0,400)
+    },)
+
+
     return (
         <div>
             <div className={cl.messagesContainer} >

@@ -1,13 +1,12 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import Navbar from "./Navbar";
 import {useDispatch, useSelector} from "react-redux";
-import {addDoc, collection, getFirestore,doc, updateDoc  } from "firebase/firestore";
+import {addDoc, collection, doc, getFirestore, updateDoc} from "firebase/firestore";
 import {initializeApp} from "firebase/app";
 import {firebaseConfig} from "../../firebase";
 import {setDialogs} from "../../reduxToolkit/slices/dialogsIdSlice";
-import {NavbarShowDialogs} from "../Home/NavbarShowDialogs";
 import {NavbarSetNewDialogs} from "./NavbarSetNewDialogs";
-
+import cl from './Navbar.module.css'
 
 
 const NavbarContainer = () => {
