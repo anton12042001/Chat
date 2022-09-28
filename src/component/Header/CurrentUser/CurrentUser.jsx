@@ -13,6 +13,7 @@ const CurrentUser = () => {
     const navigate = useNavigate()
 
     const Logout = () => {
+        navigate('/authorization')
         dispatch(removeUser())
         dispatch(removeDialogs())
         dispatch(removeDialogsList())

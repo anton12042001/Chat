@@ -12,7 +12,7 @@ const DialogsContainer = () => {
     const params = useParams()
     const {id, displayName, photoURL} = useSelector(state => state.user)
     const {messages} = useSelector(state => state.messages)
-    console.log(messages)
+
 
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);

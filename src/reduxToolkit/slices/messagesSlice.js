@@ -12,6 +12,7 @@ const messagesSlice = createSlice({
     initialState,
     reducers: {
         setMessages(state,action) {
+            debugger
             state.messages = action.payload
         },
         removeMessages(state,action){
