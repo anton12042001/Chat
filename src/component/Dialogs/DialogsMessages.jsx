@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import cl from "./Dialogs.module.css"
 
 const DialogsMessages = ({displayName,text,uid,photoURL, id}) => {

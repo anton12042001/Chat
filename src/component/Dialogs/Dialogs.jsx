@@ -1,29 +1,31 @@
-import React, {useEffect, useLayoutEffect, useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import cl from "./Dialogs.module.css"
 import DialogsSendMessageForm from "./DialogsSendMessageForm";
-import {collection, getFirestore, onSnapshot, orderBy, query, limit,} from "firebase/firestore";
 import {useParams} from "react-router-dom";
-import {initializeApp} from "firebase/app";
-import {firebaseConfig} from "../../firebase";
 import DialogsMessages from "./DialogsMessages";
 import Loader from "../UI/Loader";
 import {useDispatch, useSelector} from "react-redux";
+import {collection, getFirestore, limit, onSnapshot, orderBy, query} from "firebase/firestore";
 import {setMessages} from "../../reduxToolkit/slices/messagesSlice";
+import {initializeApp} from "firebase/app";
+import {firebaseConfig} from "../../firebase";
 
 
 const Dialogs = ({sendMessage}) => {
 
     const params = useParams()
-    const [loading, setLoading] = useState(true)
     const dispatch = useDispatch()
+    const [loading, setLoading] = useState(true)
     const {messages} = useSelector(state => state.messages)
     const {id} = useSelector(state => state.user)
     const fieldRef = useRef(null)
-    console.log(fieldRef)
+
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 
 
+
+    //todo отрефакторить useEffect и перенести в DialogsContainer
     useEffect(() => {
         const q = query(collection(db, `dialogs/${params.id}/messages`), limit(30), orderBy('createdAt', "desc"));
         const unsubscribe = onSnapshot(q, (querySnapshot) => {
@@ -34,17 +36,16 @@ const Dialogs = ({sendMessage}) => {
             dispatch(setMessages(dialogs.reverse()))
             setLoading(false)
         });
-        console.log("юзэффект с загрузкой сообщений")
     }, [])
 
-    useEffect(() => {
 
-        if(<DialogsSendMessageForm/> && fieldRef.current){
-            debugger
+
+
+    useEffect(() => {
+        if(<DialogsSendMessageForm/>){
             console.log(fieldRef.current)
             fieldRef.current.scrollIntoView(false)
         }
-        console.log("юзэффект с скоролом")
     },[loading])
 
     const createMessage = (data) => {
