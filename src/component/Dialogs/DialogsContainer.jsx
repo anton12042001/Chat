@@ -5,7 +5,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {addMessagesAPI} from "../api/messagesAPI";
 import {useEffect, useState} from "react";
 import {collection, getFirestore, limit, onSnapshot, orderBy, query} from "firebase/firestore";
-import {setMessages} from "../../reduxToolkit/slices/messagesSlice";
+import {setLastMessages, setMessages} from "../../reduxToolkit/slices/messagesSlice";
 import {initializeApp} from "firebase/app";
 import {firebaseConfig} from "../../firebase";
 import Loader from "../UI/Loader";
@@ -16,22 +16,23 @@ const DialogsContainer = () => {
     const params = useParams()
     const {id, displayName, photoURL,email} = useSelector(state => state.user)
     const dispatch = useDispatch()
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
     const [loading, setLoading] = useState(false)
     const {messages} = useSelector(state => state.messages)
 
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
 
     useEffect(() => {
         const q = query(collection(db, `dialogs/${params.id}/messages`), limit(30), orderBy('createdAt', "desc"));
-        const unsubscribe = onSnapshot(q, (querySnapshot) => {
+        const unsubscribe = onSnapshot(q, async (querySnapshot) => {
             let dialogs = []
             querySnapshot.forEach((doc) => {
                 dialogs.push(doc.data())
             });
             setLoading(false)
             dispatch(setMessages(dialogs.reverse()))
-
+            const lastMessages =  querySnapshot.docs[querySnapshot.docs.length - 1];
+            dispatch(setLastMessages(lastMessages))
         });
     }, [])
 

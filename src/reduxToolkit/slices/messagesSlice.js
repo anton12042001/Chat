@@ -1,7 +1,8 @@
 import {createSlice} from "@reduxjs/toolkit";
 
 const initialState = {
-    messages:null,
+    messages:[],
+    lastMessages:null
 
 }
 
@@ -15,11 +16,19 @@ const messagesSlice = createSlice({
             debugger
             state.messages = action.payload
         },
+        additionalMessages(state,action){
+            debugger
+            state.messages.unshift(action.payload)
+        },
+        setLastMessages(state,action) {
+            debugger
+            state.lastMessages = action.payload
+        },
         removeMessages(state,action){
             state.messages = null
         }
     },
 })
-export const {setMessages,removeMessages,} = messagesSlice.actions
+export const {setMessages,setLastMessages,additionalMessages,removeMessages} = messagesSlice.actions
 
 export default  messagesSlice.reducer
