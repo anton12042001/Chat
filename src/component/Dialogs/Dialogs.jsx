@@ -1,48 +1,19 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useRef} from 'react';
 import cl from "./Dialogs.module.css"
 import DialogsSendMessageForm from "./DialogsSendMessageForm";
-import {useParams} from "react-router-dom";
 import DialogsMessages from "./DialogsMessages";
-import Loader from "../UI/Loader";
-import {useDispatch, useSelector} from "react-redux";
-import {collection, getFirestore, limit, onSnapshot, orderBy, query} from "firebase/firestore";
-import {setMessages} from "../../reduxToolkit/slices/messagesSlice";
-import {initializeApp} from "firebase/app";
-import {firebaseConfig} from "../../firebase";
+import {useSelector} from "react-redux";
 
 
-const Dialogs = ({sendMessage}) => {
+const Dialogs = ({sendMessage,messages,loading}) => {
 
-    const params = useParams()
-    const dispatch = useDispatch()
-    const [loading, setLoading] = useState(true)
-    const {messages} = useSelector(state => state.messages)
+
     const {id} = useSelector(state => state.user)
     const fieldRef = useRef(null)
 
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-
-
-
-    //todo отрефакторить useEffect и перенести в DialogsContainer
-    useEffect(() => {
-        const q = query(collection(db, `dialogs/${params.id}/messages`), limit(30), orderBy('createdAt', "desc"));
-        const unsubscribe = onSnapshot(q, (querySnapshot) => {
-            let dialogs = []
-            querySnapshot.forEach((doc) => {
-                dialogs.push(doc.data())
-            });
-            dispatch(setMessages(dialogs.reverse()))
-            setLoading(false)
-        });
-    }, [])
-
-
-
 
     useEffect(() => {
-        if(<DialogsSendMessageForm/>){
+        if(<DialogsSendMessageForm/> && fieldRef.current ){
             console.log(fieldRef.current)
             fieldRef.current.scrollIntoView(false)
         }
@@ -52,9 +23,7 @@ const Dialogs = ({sendMessage}) => {
         sendMessage(data.body)
     }
 
-    if (loading) {
-        return <Loader/>
-    }
+
 
     return (
         <div className={cl.container}>
