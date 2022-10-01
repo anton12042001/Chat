@@ -22,6 +22,9 @@ const DialogsContainer = () => {
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 
+
+
+
     useEffect(() => {
         const q = query(collection(db, `dialogs/${params.id}/messages`), limit(30), orderBy('createdAt', "desc"));
         const unsubscribe = onSnapshot(q, async (querySnapshot) => {
@@ -35,6 +38,8 @@ const DialogsContainer = () => {
             dispatch(setLastMessages(lastMessages))
         });
     }, [])
+
+
 
 
 
