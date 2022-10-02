@@ -19,10 +19,13 @@ const messagesSlice = createSlice({
             state.messages.unshift(action.payload)
         },
         setLastMessages(state,action) {
+            debugger
             state.lastMessages = action.payload
+            debugger
         },
         removeMessages(state,action){
             state.messages = null
+            state.lastMessages = null
         }
     },
 })

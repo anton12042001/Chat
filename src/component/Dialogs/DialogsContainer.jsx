@@ -36,6 +36,8 @@ const DialogsContainer = () => {
             dispatch(setMessages(dialogs.reverse()))
             const lastMessages =  querySnapshot.docs[querySnapshot.docs.length - 1];
             dispatch(setLastMessages(lastMessages))
+            debugger
+
         });
     }, [])
 
