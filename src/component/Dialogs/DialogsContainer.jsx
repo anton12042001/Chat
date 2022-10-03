@@ -18,6 +18,8 @@ const DialogsContainer = () => {
     const dispatch = useDispatch()
     const [loading, setLoading] = useState(false)
     const {messages} = useSelector(state => state.messages)
+    const {lastMessages} = useSelector(state => state.messages)
+    console.log(lastMessages)
 
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
@@ -50,7 +52,7 @@ const DialogsContainer = () => {
         await addMessagesAPI(params,body,photoURL,displayName,id)
     }
 
-    if (loading || !messages) {
+    if (loading || !messages || !lastMessages) {
         return <Loader/>
     }
     if(!email){
@@ -58,7 +60,7 @@ const DialogsContainer = () => {
     }
     return (
         <div>
-            <Dialogs messages={messages} loading={loading} sendMessage={sendMessage}/>
+            <Dialogs lastMessages={lastMessages} messages={messages} loading={loading} sendMessage={sendMessage}/>
         </div>
     );
 };

@@ -10,11 +10,9 @@ import {additionalMessages, setLastMessages} from "../../reduxToolkit/slices/mes
 import {useParams} from "react-router-dom";
 
 
-const Dialogs = ({sendMessage, messages, loading}) => {
+const Dialogs = ({sendMessage, messages, loading, lastMessages}) => {
 
     const {id} = useSelector(state => state.user)
-    const {lastMessages} = useSelector(state => state.messages)
-
     const params = useParams()
     const dispatch = useDispatch()
     const [countLoadingMessages, setCountLoadingMessages] = useState(-1);
@@ -24,11 +22,11 @@ const Dialogs = ({sendMessage, messages, loading}) => {
     const observer = useRef(null)
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
+    const [isPostsLoading, setIsPostsLoading] = useState(false)
 
 
     useEffect(() => {
         if (<DialogsSendMessageForm/> && fieldRef.current) {
-            console.log(fieldRef)
             fieldRef.current.scrollIntoView(false)
         }
     }, [loading])
@@ -47,25 +45,29 @@ const Dialogs = ({sendMessage, messages, loading}) => {
     useEffect(() => {
         var callback = function (entries, observer) {
             if (observer.current) observer.current.disconnect()
+            setIsPostsLoading(false)
             if (entries[0].isIntersecting) {
-                console.log(lastMessages)
-                const q = query(collection(db, `dialogs/${params.id}/messages`),
-                    limit(30),
-                    orderBy('createdAt', "desc"),
-                    startAfter(lastMessages));
-                const unsubscribe =  onSnapshot(q, (querySnapshot) => {
-                    debugger
-                    let dialogs = []
-                    querySnapshot.forEach((doc) => {
-                        dialogs.push(doc.data())
-                    });
-                    console.log(dialogs)
-                    dialogs.map(r => dispatch(additionalMessages(r)))
-                    debugger
-                    const lastMessages = querySnapshot.docs[querySnapshot.docs.length - 1];
-                    dispatch(setLastMessages(lastMessages))
-                    console.log("отработала")
-                });
+                //
+                // console.log(lastMessages)
+                // const q = query(collection(db, `dialogs/${params.id}/messages`),
+                //     limit(30),
+                //     orderBy('createdAt', "desc"),
+                //     startAfter(lastMessages));
+                // const unsubscribe = onSnapshot(q, (querySnapshot) => {
+                //     debugger
+                //     let dialogs = []
+                //     querySnapshot.forEach((doc) => {
+                //         debugger
+                //         dialogs.push(doc.data())
+                //     });
+                //     console.log(dialogs)
+                //     dialogs.map(r => dispatch(additionalMessages(r)))
+                //     debugger
+                //     const lastMessages = querySnapshot.docs[querySnapshot.docs.length - 1];
+                //     dispatch(setLastMessages(lastMessages))
+                //     setIsPostsLoading(true)
+                // });
+                console.log("отработала")
             }
         };
         observer.current = new IntersectionObserver(callback);
@@ -77,32 +79,31 @@ const Dialogs = ({sendMessage, messages, loading}) => {
         sendMessage(data.body)
     }
 
-    const loadMoreMessages = () => {
-        console.log("ща отработает")
-        const q = query(collection(db, `dialogs/${params.id}/messages`),
-            limit(30),
-            orderBy('createdAt', "desc"),
-            startAfter(lastMessages));
-        debugger
-        onSnapshot(q,  (querySnapshot) => {
-            debugger
-            let dialogs = []
-            querySnapshot.forEach((doc) => {
-                dialogs.push(doc.data())
-            });
-            dialogs.map(r => dispatch(additionalMessages(r)))
-            debugger
-            const lastMessages = querySnapshot.docs[querySnapshot.docs.length - 1];
-            dispatch(setLastMessages(lastMessages))
-            console.log("отработала")
-        });
-
-    }
-
+    // const loadMoreMessages = () => {
+    //     console.log("ща отработает")
+    //     const q = query(collection(db, `dialogs/${params.id}/messages`),
+    //         limit(30),
+    //         orderBy('createdAt', "desc"),
+    //         startAfter(lastMessages));
+    //     debugger
+    //     onSnapshot(q,  (querySnapshot) => {
+    //         debugger
+    //         let dialogs = []
+    //         querySnapshot.forEach((doc) => {
+    //             dialogs.push(doc.data())
+    //         });
+    //         dialogs.map(r => dispatch(additionalMessages(r)))
+    //         debugger
+    //         const lastMessages = querySnapshot.docs[querySnapshot.docs.length - 1];
+    //         dispatch(setLastMessages(lastMessages))
+    //         console.log("отработала")
+    //     });
+    //
+    // }
 
     return (
         <div className={cl.container}>
-            <button onClick={loadMoreMessages}>Загрузить еще сообщения</button>
+            {/*<button onClick={loadMoreMessages}>Загрузить еще сообщения</button>*/}
             <div ref={windowHeghtRef}>
                 <div ref={lastElement} style={{height: 20, background: "red"}}></div>
                 {messages.map(m => <DialogsMessages displayName={m.displayName} text={m.text} uid={m.uid} id={id}
