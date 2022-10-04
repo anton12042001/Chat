@@ -24,6 +24,8 @@ const Dialogs = ({sendMessage, messages, loading, lastMessages}) => {
     const db = getFirestore(app);
     const [isPostsLoading, setIsPostsLoading] = useState(false)
 
+    const [state, setState] = useState(0)
+
 
     useEffect(() => {
         if (<DialogsSendMessageForm/> && fieldRef.current) {
@@ -43,36 +45,16 @@ const Dialogs = ({sendMessage, messages, loading, lastMessages}) => {
     }, [lastMessages])
 
     useEffect(() => {
+        if (observer.current) observer.current.disconnect()
         var callback = function (entries, observer) {
-            if (observer.current) observer.current.disconnect()
-            setIsPostsLoading(false)
             if (entries[0].isIntersecting) {
-                //
-                // console.log(lastMessages)
-                // const q = query(collection(db, `dialogs/${params.id}/messages`),
-                //     limit(30),
-                //     orderBy('createdAt', "desc"),
-                //     startAfter(lastMessages));
-                // const unsubscribe = onSnapshot(q, (querySnapshot) => {
-                //     debugger
-                //     let dialogs = []
-                //     querySnapshot.forEach((doc) => {
-                //         debugger
-                //         dialogs.push(doc.data())
-                //     });
-                //     console.log(dialogs)
-                //     dialogs.map(r => dispatch(additionalMessages(r)))
-                //     debugger
-                //     const lastMessages = querySnapshot.docs[querySnapshot.docs.length - 1];
-                //     dispatch(setLastMessages(lastMessages))
-                //     setIsPostsLoading(true)
-                // });
-                console.log("отработала")
+                setState(state + 1)
+                console.log(state)
             }
-        };
+        }
         observer.current = new IntersectionObserver(callback);
         observer.current.observe(lastElement.current)
-    }, [])
+    }, [observer.current])
 
 
     const createMessage = (data) => {
@@ -100,6 +82,49 @@ const Dialogs = ({sendMessage, messages, loading, lastMessages}) => {
     //     });
     //
     // }
+
+
+    const testFunction = () => {
+        const q = query(collection(db, `dialogs/${params.id}/messages`),
+            limit(30),
+            orderBy('createdAt', "desc"),
+            startAfter(lastMessages));
+        const unsubscribe = onSnapshot(q, (querySnapshot) => {
+            debugger
+            let dialogs = []
+            querySnapshot.forEach((doc) => {
+                debugger
+                dialogs.push(doc.data())
+            });
+            console.log(dialogs)
+            dialogs.map(r => dispatch(additionalMessages(r)))
+            debugger
+            const lastMessages = querySnapshot.docs[querySnapshot.docs.length - 1];
+            dispatch(setLastMessages(lastMessages))
+
+        });
+        console.log("отработала")
+    }
+
+    // const q = query(collection(db, `dialogs/${params.id}/messages`),
+    //     limit(30),
+    //     orderBy('createdAt', "desc"),
+    //     startAfter(lastMessages));
+    // const unsubscribe = onSnapshot(q, (querySnapshot) => {
+    //     debugger
+    //     let dialogs = []
+    //     querySnapshot.forEach((doc) => {
+    //         debugger
+    //         dialogs.push(doc.data())
+    //     });
+    //     console.log(dialogs)
+    //     dialogs.map(r => dispatch(additionalMessages(r)))
+    //     debugger
+    //     const lastMessages = querySnapshot.docs[querySnapshot.docs.length - 1];
+    //     dispatch(setLastMessages(lastMessages))
+    //
+    // });
+    // console.log("отработала")
 
     return (
         <div className={cl.container}>
