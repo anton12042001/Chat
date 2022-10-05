@@ -17,7 +17,7 @@ export const getMessagesAPI = () => {
 
 
 
-export const addMessagesAPI = async (params,body,photoURL,displayName,id) => {
+export const setMessagesAPI = async (params, body, photoURL, displayName, id) => {
     try {
         const docRef = await addDoc(collection(db, `dialogs/${params.id}/messages`), {
             uid: id,

@@ -19,12 +19,10 @@ const Dialogs = ({sendMessage, messages, loading, lastMessages}) => {
     const fieldRef = useRef(null)
     const windowHeghtRef = useRef(null)
     const lastElement = useRef(null)
-    const observer = useRef(null)
+    const [lastPathMessages,setLastPathMessages] = useState(false)
+
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
-    const [isPostsLoading, setIsPostsLoading] = useState(false)
-
-    const [state, setState] = useState(0)
 
 
     useEffect(() => {
@@ -44,91 +42,58 @@ const Dialogs = ({sendMessage, messages, loading, lastMessages}) => {
         }
     }, [lastMessages])
 
+
+
+
     useEffect(() => {
-        if (observer.current) observer.current.disconnect()
-        var callback = function (entries, observer) {
-            if (entries[0].isIntersecting) {
-                setState(state + 1)
-                console.log(state)
+        if (!lastElement.current) return;
+        const observer = new IntersectionObserver(([{isIntersecting}]) => {
+            if (isIntersecting) {
+                loadMoreMessages()
             }
-        }
-        observer.current = new IntersectionObserver(callback);
-        observer.current.observe(lastElement.current)
-    }, [observer.current])
+        });
+        observer.observe(lastElement.current);
+        return () => observer.disconnect();
+    }, [countLoadingMessages]);
+
+
 
 
     const createMessage = (data) => {
         sendMessage(data.body)
     }
 
-    // const loadMoreMessages = () => {
-    //     console.log("ща отработает")
-    //     const q = query(collection(db, `dialogs/${params.id}/messages`),
-    //         limit(30),
-    //         orderBy('createdAt', "desc"),
-    //         startAfter(lastMessages));
-    //     debugger
-    //     onSnapshot(q,  (querySnapshot) => {
-    //         debugger
-    //         let dialogs = []
-    //         querySnapshot.forEach((doc) => {
-    //             dialogs.push(doc.data())
-    //         });
-    //         dialogs.map(r => dispatch(additionalMessages(r)))
-    //         debugger
-    //         const lastMessages = querySnapshot.docs[querySnapshot.docs.length - 1];
-    //         dispatch(setLastMessages(lastMessages))
-    //         console.log("отработала")
-    //     });
-    //
-    // }
 
 
-    const testFunction = () => {
+    const loadMoreMessages = () => {
         const q = query(collection(db, `dialogs/${params.id}/messages`),
             limit(30),
             orderBy('createdAt', "desc"),
-            startAfter(lastMessages));
+            startAfter(lastMessages))
         const unsubscribe = onSnapshot(q, (querySnapshot) => {
-            debugger
             let dialogs = []
             querySnapshot.forEach((doc) => {
-                debugger
                 dialogs.push(doc.data())
             });
+
+            //todo доработать проверку на последнее сообщение
             console.log(dialogs)
+            if(dialogs.length < 30){
+                setLastPathMessages(true)
+                console.log(lastPathMessages)
+            }else{
+                console.log("Пока больше 30")
+            }
+            //todo доработать проверку на последнее сообщение
+
             dialogs.map(r => dispatch(additionalMessages(r)))
-            debugger
             const lastMessages = querySnapshot.docs[querySnapshot.docs.length - 1];
             dispatch(setLastMessages(lastMessages))
-
         });
-        console.log("отработала")
     }
-
-    // const q = query(collection(db, `dialogs/${params.id}/messages`),
-    //     limit(30),
-    //     orderBy('createdAt', "desc"),
-    //     startAfter(lastMessages));
-    // const unsubscribe = onSnapshot(q, (querySnapshot) => {
-    //     debugger
-    //     let dialogs = []
-    //     querySnapshot.forEach((doc) => {
-    //         debugger
-    //         dialogs.push(doc.data())
-    //     });
-    //     console.log(dialogs)
-    //     dialogs.map(r => dispatch(additionalMessages(r)))
-    //     debugger
-    //     const lastMessages = querySnapshot.docs[querySnapshot.docs.length - 1];
-    //     dispatch(setLastMessages(lastMessages))
-    //
-    // });
-    // console.log("отработала")
 
     return (
         <div className={cl.container}>
-            {/*<button onClick={loadMoreMessages}>Загрузить еще сообщения</button>*/}
             <div ref={windowHeghtRef}>
                 <div ref={lastElement} style={{height: 20, background: "red"}}></div>
                 {messages.map(m => <DialogsMessages displayName={m.displayName} text={m.text} uid={m.uid} id={id}

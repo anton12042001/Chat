@@ -20,7 +20,6 @@ const messagesSlice = createSlice({
         },
         setLastMessages(state,action) {
             state.lastMessages = action.payload
-            debugger
         },
         removeMessages(state,action){
             state.messages = null
