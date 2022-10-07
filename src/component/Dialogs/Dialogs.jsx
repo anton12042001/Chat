@@ -19,7 +19,6 @@ const Dialogs = ({sendMessage, messages, loading, lastMessages}) => {
     const fieldRef = useRef(null)
     const windowHeghtRef = useRef(null)
     const lastElement = useRef(null)
-    const [lastPathMessages,setLastPathMessages] = useState(false)
     let dialogs = []
 
     const app = initializeApp(firebaseConfig);
@@ -73,7 +72,14 @@ const Dialogs = ({sendMessage, messages, loading, lastMessages}) => {
             startAfter(lastMessages))
         const unsubscribe = onSnapshot(q, (querySnapshot) => {
             querySnapshot.forEach((doc) => {
-                dialogs.push(doc.data())
+                let midleElement = {
+                    displayName:doc.data().displayName,
+                    photoURL: doc.data().photoURL,
+                    text: doc.data().text,
+                    uid:doc.data().uid,
+                    createdAt:new Date(doc.data().createdAt.seconds * 1000).toLocaleString()
+                }
+                dialogs.push(midleElement)
             });
             dialogs.map(r => dispatch(additionalMessages(r)))
             const lastMessages = querySnapshot.docs[querySnapshot.docs.length - 1];

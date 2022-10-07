@@ -29,13 +29,19 @@ const DialogsContainer = () => {
         const unsubscribe = onSnapshot(q, async (querySnapshot) => {
             let dialogs = []
             querySnapshot.forEach((doc) => {
-                dialogs.push(doc.data())
+                let midleElement = {
+                    displayName:doc.data().displayName,
+                    photoURL: doc.data().photoURL,
+                    text: doc.data().text,
+                    uid:doc.data().uid,
+                    createdAt:new Date(doc.data().createdAt.seconds * 1000).toLocaleString()
+                }
+                dialogs.push(midleElement)
             });
             setLoading(false)
             dispatch(setMessages(dialogs.reverse()))
             const lastMessages =  querySnapshot.docs[querySnapshot.docs.length - 1];
             dispatch(setLastMessages(lastMessages))
-
         });
     }, [])
 
