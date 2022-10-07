@@ -20,6 +20,7 @@ const Dialogs = ({sendMessage, messages, loading, lastMessages}) => {
     const windowHeghtRef = useRef(null)
     const lastElement = useRef(null)
     const [lastPathMessages,setLastPathMessages] = useState(false)
+    let dialogs = []
 
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
@@ -48,7 +49,7 @@ const Dialogs = ({sendMessage, messages, loading, lastMessages}) => {
     useEffect(() => {
         if (!lastElement.current) return;
         const observer = new IntersectionObserver(([{isIntersecting}]) => {
-            if (isIntersecting) {
+            if (isIntersecting && dialogs < 30) {
                 loadMoreMessages()
             }
         });
@@ -71,21 +72,9 @@ const Dialogs = ({sendMessage, messages, loading, lastMessages}) => {
             orderBy('createdAt', "desc"),
             startAfter(lastMessages))
         const unsubscribe = onSnapshot(q, (querySnapshot) => {
-            let dialogs = []
             querySnapshot.forEach((doc) => {
                 dialogs.push(doc.data())
             });
-
-            //todo доработать проверку на последнее сообщение
-            console.log(dialogs)
-            if(dialogs.length < 30){
-                setLastPathMessages(true)
-                console.log(lastPathMessages)
-            }else{
-                console.log("Пока больше 30")
-            }
-            //todo доработать проверку на последнее сообщение
-
             dialogs.map(r => dispatch(additionalMessages(r)))
             const lastMessages = querySnapshot.docs[querySnapshot.docs.length - 1];
             dispatch(setLastMessages(lastMessages))
@@ -95,7 +84,7 @@ const Dialogs = ({sendMessage, messages, loading, lastMessages}) => {
     return (
         <div className={cl.container}>
             <div ref={windowHeghtRef}>
-                <div ref={lastElement} style={{height: 20, background: "red"}}></div>
+                <div className={cl.lastElement}  ref={lastElement}></div>
                 {messages.map(m => <DialogsMessages displayName={m.displayName} text={m.text} uid={m.uid} id={id}
                                                     photoURL={m.photoURL}/>)}
             </div>
