@@ -42,8 +42,6 @@ const Dialogs = ({sendMessage, messages, loading, lastMessages}) => {
     }, [lastMessages])
 
 
-
-
     useEffect(() => {
         if (!lastElement.current) return;
         const observer = new IntersectionObserver(([{isIntersecting}]) => {
@@ -93,6 +91,7 @@ const Dialogs = ({sendMessage, messages, loading, lastMessages}) => {
         <div className={cl.container}>
             <div ref={windowHeghtRef}>
                 <div className={cl.lastElement}  ref={lastElement}></div>
+                {(messages.length === 0) && <div className={cl.noMessages} >В этом диалоге нет сообщений</div>}
                 {messages.map(m => <DialogsMessages displayName={m.displayName} text={m.text} uid={m.uid} id={id}
                                                     photoURL={m.photoURL} key={m.idMessages} />)}
             </div>
