@@ -11,7 +11,6 @@ import {useParams} from "react-router-dom";
 
 
 const Dialogs = ({sendMessage, messages, loading, lastMessages}) => {
-
     const {id} = useSelector(state => state.user)
     const params = useParams()
     const dispatch = useDispatch()
@@ -72,12 +71,15 @@ const Dialogs = ({sendMessage, messages, loading, lastMessages}) => {
             startAfter(lastMessages))
         const unsubscribe = onSnapshot(q, (querySnapshot) => {
             querySnapshot.forEach((doc) => {
+                const dateId = doc.data().createdAt.seconds + doc.data().createdAt.nanoseconds
                 let midleElement = {
                     displayName:doc.data().displayName,
                     photoURL: doc.data().photoURL,
                     text: doc.data().text,
                     uid:doc.data().uid,
-                    createdAt:new Date(doc.data().createdAt.seconds * 1000).toLocaleString()
+                    createdAt:new Date(doc.data().createdAt.seconds * 1000).toLocaleString(),
+                    idMessages:dateId
+
                 }
                 dialogs.push(midleElement)
             });
@@ -92,7 +94,7 @@ const Dialogs = ({sendMessage, messages, loading, lastMessages}) => {
             <div ref={windowHeghtRef}>
                 <div className={cl.lastElement}  ref={lastElement}></div>
                 {messages.map(m => <DialogsMessages displayName={m.displayName} text={m.text} uid={m.uid} id={id}
-                                                    photoURL={m.photoURL}/>)}
+                                                    photoURL={m.photoURL} key={m.idMessages} />)}
             </div>
 
             <div ref={fieldRef}>

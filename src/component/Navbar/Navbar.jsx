@@ -21,7 +21,7 @@ const Navbar = (props) => {
             {newDialogs && <NewDialogsForm setNewDialogsDB={setNewDialogsDB} /> }
             <div className={cl.dialogsList} >
                 {dialogsForShow.map(d =>
-                    <NavbarDialogsList dialogsName={d.info.dialogsName} id={d.id}  />
+                    <NavbarDialogsList dialogsName={d.info.dialogsName} id={d.id} key={d.id}  />
                 )}
             </div>
 

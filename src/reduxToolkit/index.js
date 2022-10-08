@@ -10,6 +10,9 @@ export const store = configureStore({
         dialogs:dialogsReducer,
         showDialogs:showDialogsReducer,
         messages: messagesReducer
-    }
-
+    },
+    middleware: getDefaultMiddleware =>
+        getDefaultMiddleware({
+            serializableCheck: false,
+        }),
 })

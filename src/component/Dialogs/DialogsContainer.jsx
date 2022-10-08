@@ -1,10 +1,9 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {useNavigate, useParams} from "react-router-dom"
 import Dialogs from "./Dialogs";
 import {useDispatch, useSelector} from "react-redux";
 import {setMessagesAPI} from "../api/messagesAPI";
-import {useEffect, useState} from "react";
-import {collection, doc, getDoc, getFirestore, limit, onSnapshot, orderBy, query} from "firebase/firestore";
+import {collection, getFirestore, limit, onSnapshot, orderBy, query} from "firebase/firestore";
 import {setLastMessages, setMessages} from "../../reduxToolkit/slices/messagesSlice";
 import {initializeApp} from "firebase/app";
 import {firebaseConfig} from "../../firebase";
@@ -29,12 +28,15 @@ const DialogsContainer = () => {
         const unsubscribe = onSnapshot(q, async (querySnapshot) => {
             let dialogs = []
             querySnapshot.forEach((doc) => {
+                const dateId = doc.data().createdAt.seconds + doc.data().createdAt.nanoseconds
                 let midleElement = {
                     displayName:doc.data().displayName,
                     photoURL: doc.data().photoURL,
                     text: doc.data().text,
                     uid:doc.data().uid,
-                    createdAt:new Date(doc.data().createdAt.seconds * 1000).toLocaleString()
+                    createdAt:new Date(doc.data().createdAt.seconds * 1000).toLocaleString(),
+                    idMessages:dateId
+
                 }
                 dialogs.push(midleElement)
             });
