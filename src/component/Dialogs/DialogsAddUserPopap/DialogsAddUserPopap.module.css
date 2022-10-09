@@ -1,0 +1,29 @@
+.form{
+    background: rgba(255, 255, 255, 0.4);;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0 ;
+    left: 0;
+}
+.input input{
+    width: 310px;
+    height: 30px;
+    margin:  0 0 0 17px;
+}
+.imputButton{
+    margin: 150px auto 0px auto;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    justify-content: center;
+    border: 1px solid black;
+    width: 350px;
+    height: 350px;
+    background: white;
+}
+.imputButton button{
+    margin: 15px auto 0 auto;
+    width: 130px;
+
+}

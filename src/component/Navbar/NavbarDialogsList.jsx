@@ -11,7 +11,7 @@ const NavbarDialogsList = ({dialogsName, id}) => {
 
     return (
         <div>
-            <button onClick={switchToDialog} >{dialogsName}</button>
+            <button onClick={switchToDialog}>{dialogsName}</button>
         </div>
     );
 };

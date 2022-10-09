@@ -9,11 +9,9 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 export const NavbarSetNewDialogs = async (id,dispatch) => {
-    debugger
     let docRef = (doc(db, "dialogs", `${id}`))
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
-        debugger
         let dialogsInfo = {
             info: docSnap.data(),
             id: docSnap.id

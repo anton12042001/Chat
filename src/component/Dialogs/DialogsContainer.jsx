@@ -19,6 +19,7 @@ const DialogsContainer = () => {
     const [loading, setLoading] = useState(false)
     const {messages} = useSelector(state => state.messages)
     const {lastMessages} = useSelector(state => state.messages)
+    const [visiblePopap, setVisiblePopap] = useState(false)
 
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
@@ -51,7 +52,9 @@ const DialogsContainer = () => {
 
 
 
-
+    const addUserToDialogs = () => {
+        setVisiblePopap(true)
+    }
 
 
     const sendMessage = async (body) => {
@@ -66,7 +69,15 @@ const DialogsContainer = () => {
     }
     return (
         <div className={cl.dialogsContainer} >
-            <Dialogs lastMessages={lastMessages} messages={messages} loading={loading} sendMessage={sendMessage}/>
+            <Dialogs
+                lastMessages={lastMessages}
+                messages={messages}
+                loading={loading}
+                sendMessage={sendMessage}
+                addUserToDialogs={addUserToDialogs}
+                visiblePopap={visiblePopap}
+                setVisiblePopap={setVisiblePopap}
+            />
         </div>
     );
 };

@@ -1,6 +1,6 @@
 import React from 'react';
 import {useForm} from "react-hook-form";
-import cl from './Dialogs.module.css'
+import cl from '../Dialogs.module.css'
 
 const DialogsSendMessageForm = (props) => {
 
@@ -19,7 +19,7 @@ const DialogsSendMessageForm = (props) => {
     return (
         <form className={cl.sendMessage} onSubmit={handleSubmit(onSubmit)}>
             <div>
-                <textarea {...register("body")}/>
+                <textarea className={cl.textArea}  {...register("body")}/>
             </div>
             <button type={"submit"}>Отправить сообщение</button>
         </form>

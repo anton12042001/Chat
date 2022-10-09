@@ -1,16 +1,17 @@
 import React, {useEffect, useRef, useState} from 'react';
 import cl from "./Dialogs.module.css"
-import DialogsSendMessageForm from "./DialogsSendMessageForm";
-import DialogsMessages from "./DialogsMessages";
+import DialogsSendMessageForm from "./DialogsMessages/DialogsSendMessageForm";
+import DialogsMessages from "./DialogsMessages/DialogsMessages";
 import {useDispatch, useSelector} from "react-redux";
 import {collection, getFirestore, limit, onSnapshot, orderBy, query, startAfter} from "firebase/firestore";
 import {initializeApp} from "firebase/app";
 import {firebaseConfig} from "../../firebase";
 import {additionalMessages, setLastMessages} from "../../reduxToolkit/slices/messagesSlice";
 import {useParams} from "react-router-dom";
+import DialogsAddUserPopap from "./DialogsAddUserPopap/DialogsAddUserPopap";
 
 
-const Dialogs = ({sendMessage, messages, loading, lastMessages}) => {
+const Dialogs = ({sendMessage, messages, loading, lastMessages,addUserToDialogs,visiblePopap,setVisiblePopap}) => {
     const {id} = useSelector(state => state.user)
     const params = useParams()
     const dispatch = useDispatch()
@@ -87,6 +88,8 @@ const Dialogs = ({sendMessage, messages, loading, lastMessages}) => {
         });
     }
 
+
+
     return (
         <div className={cl.container}>
             <div ref={windowHeghtRef}>
@@ -96,8 +99,12 @@ const Dialogs = ({sendMessage, messages, loading, lastMessages}) => {
                                                     photoURL={m.photoURL} key={m.idMessages} />)}
             </div>
 
-            <div ref={fieldRef}>
+            <div className={cl.sendMessagesOrAddUser}  ref={fieldRef}>
                 <DialogsSendMessageForm createMessage={createMessage}/>
+                <div className={cl.addUserToChat} >
+                    <button onClick={addUserToDialogs} >Добавить пользователя в чат</button>
+                    {(visiblePopap) && <DialogsAddUserPopap setVisiblePopap={setVisiblePopap}/>}
+                </div>
             </div>
         </div>
     );

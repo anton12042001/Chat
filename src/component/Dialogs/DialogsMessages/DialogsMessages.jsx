@@ -1,5 +1,5 @@
 import React from 'react';
-import cl from "./Dialogs.module.css"
+import cl from "../Dialogs.module.css"
 
 const DialogsMessages = ({displayName,text,uid,photoURL, id}) => {
 
