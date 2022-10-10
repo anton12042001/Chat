@@ -17,14 +17,16 @@ const NavbarContainer = () => {
 
 
     useEffect(() => {
-        const q = query(collection(db, "/dialogs/"));
+        console.log("Начинает отрабатывать")
+        const q = query(collection(db, `users/${id}/dialogs`));
         const unsubscribe = onSnapshot(q, (querySnapshot) => {
+            console.log("Отрабатывает снапшот")
             const dialogsList = [];
             querySnapshot.forEach((doc) => {
                 dialogsList.push(doc.data().name);
                 console.log(doc.data())
             });
-            console.log("Current cities in CA: ", dialogsList.join(", "));
+            console.log("Current cities in CA: ", dialogsList);
         });
     },[])
 

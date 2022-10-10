@@ -11,7 +11,7 @@ import {useParams} from "react-router-dom";
 import DialogsAddUserPopap from "./DialogsAddUserPopap/DialogsAddUserPopap";
 
 
-const Dialogs = ({sendMessage, messages, loading, lastMessages,addUserToDialogs,visiblePopap,setVisiblePopap}) => {
+const Dialogs = ({sendMessage, messages, loading, lastMessages,visiblePopapAddUser,visiblePopap,setVisiblePopap,addUserToDialogs,userFound,userAdded}) => {
     const {id} = useSelector(state => state.user)
     const params = useParams()
     const dispatch = useDispatch()
@@ -102,8 +102,8 @@ const Dialogs = ({sendMessage, messages, loading, lastMessages,addUserToDialogs,
             <div className={cl.sendMessagesOrAddUser}  ref={fieldRef}>
                 <DialogsSendMessageForm createMessage={createMessage}/>
                 <div className={cl.addUserToChat} >
-                    <button onClick={addUserToDialogs} >Добавить пользователя в чат</button>
-                    {(visiblePopap) && <DialogsAddUserPopap setVisiblePopap={setVisiblePopap}/>}
+                    <button onClick={visiblePopapAddUser} >Добавить пользователя в чат</button>
+                    {(visiblePopap) && <DialogsAddUserPopap userAdded={userAdded} userFound={userFound} addUserToDialogs={addUserToDialogs} setVisiblePopap={setVisiblePopap}/>}
                 </div>
             </div>
         </div>

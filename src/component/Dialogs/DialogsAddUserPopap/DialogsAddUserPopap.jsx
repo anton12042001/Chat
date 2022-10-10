@@ -1,9 +1,11 @@
 import React from 'react';
 import {useForm} from "react-hook-form";
 import cl from './DialogsAddUserPopap.module.css'
+import {useParams} from "react-router-dom";
 
-const DialogsAddUserPopap = ({setVisiblePopap}) => {
+const DialogsAddUserPopap = ({setVisiblePopap,addUserToDialogs,userFound,userAdded}) => {
 
+    const params = useParams()
     const {
         register,
         handleSubmit,
@@ -13,6 +15,7 @@ const DialogsAddUserPopap = ({setVisiblePopap}) => {
 
     const onSubmit = (data) => {
         reset()
+        addUserToDialogs(params,data)
     }
 
     return (
@@ -22,6 +25,8 @@ const DialogsAddUserPopap = ({setVisiblePopap}) => {
                     <div className={cl.input} >
                         Введите id пользователя, которого хотите добавить
                         <input  {...register("userId")}/>
+                        {userFound && <div>Данный пользователь уже есть в этой беседе</div>}
+                        {userAdded && <div>Пользователь успешно добавлен</div>}
                     </div>
                     <button type={"submit"}>Добавить пользователя</button>
                 </div>
