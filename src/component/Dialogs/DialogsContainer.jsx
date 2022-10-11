@@ -3,20 +3,18 @@ import {useNavigate, useParams} from "react-router-dom"
 import Dialogs from "./Dialogs";
 import {useDispatch, useSelector} from "react-redux";
 import {setMessagesAPI} from "../api/messagesAPI";
-import {collection, getFirestore, limit, onSnapshot, orderBy, query} from "firebase/firestore";
+import {collection, doc, getDoc, getFirestore, limit, onSnapshot, orderBy, query, updateDoc} from "firebase/firestore";
 import {removeMessages, setLastMessages, setMessages} from "../../reduxToolkit/slices/messagesSlice";
 import {initializeApp} from "firebase/app";
 import {firebaseConfig} from "../../firebase";
 import Loader from "../UI/Loader";
 import cl from "./Dialogs.module.css"
-import {doc, setDoc, getDoc, updateDoc} from "firebase/firestore";
 
 
 const DialogsContainer = () => {
     const navigate = useNavigate()
     const params = useParams()
     const {id, displayName, photoURL, email} = useSelector(state => state.user)
-    const {dialogs} = useSelector(state => state.dialogs)
     const dispatch = useDispatch()
     const [loading, setLoading] = useState(false)
     const {messages} = useSelector(state => state.messages)
@@ -56,6 +54,8 @@ const DialogsContainer = () => {
 
 
     const visiblePopapAddUser = () => {
+        setUserFound(false)
+        setUserAdded(false)
         setVisiblePopap(true)
     }
 

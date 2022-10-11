@@ -13,7 +13,7 @@ export const createDialogAPI = async (dialogsName,dispatch,id,dialogs) => {
     const docRef = await addDoc(collection(db, "dialogs"), {
         admin:id,
         dialogsName:dialogsName,
-        users:id,
+        users:[id],
     })
 
     const dialogsRef = doc(db, "users", id);

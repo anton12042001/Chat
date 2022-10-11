@@ -8,9 +8,6 @@ const Home = (dialogs) => {
 
     useEffect(() => {
         NavbarShowDialogs(dialogs.dialogs,dispatch,dialogsForShow)
-            .then(() => {
-
-            })
     },[])
 
     return (
