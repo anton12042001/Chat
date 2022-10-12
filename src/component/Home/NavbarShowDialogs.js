@@ -9,6 +9,7 @@ const db = getFirestore(app);
 
 
 export const NavbarShowDialogs = async (dialogs, dispatch, dialogsForShow) => { //Функция для получения всех диалогов, в которых состоит юзер
+    debugger
     dialogs.map(async id => {
         let docRef = (doc(db, "dialogs", `${id}`))
         const docSnap = await getDoc(docRef);
@@ -20,9 +21,6 @@ export const NavbarShowDialogs = async (dialogs, dispatch, dialogsForShow) => { 
             if(dialogsForShow.length === 0) {
                 dispatch(setDialogsForShow(dialogsInfo))
             }
-        } else {
-            // doc.data() will be undefined in this case
-            console.log("No such document!");
         }
     })
 }
