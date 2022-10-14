@@ -12,11 +12,9 @@ const dialogsIdSlice = createSlice({
     initialState,
     reducers: {
         setDialogs(state,action) {
-            debugger
             state.dialogs = action.payload
         },
         removeDialogs(state,action){
-            debugger
             state.dialogs = null
         }
     },

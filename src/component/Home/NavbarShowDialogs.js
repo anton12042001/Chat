@@ -9,7 +9,6 @@ const db = getFirestore(app);
 
 
 export const NavbarShowDialogs = async (dialogs, dispatch, dialogsForShow) => { //Функция для получения всех диалогов, в которых состоит юзер
-    debugger
     dialogs.map(async id => {
         let docRef = (doc(db, "dialogs", `${id}`))
         const docSnap = await getDoc(docRef);

@@ -3,12 +3,9 @@ import cl from "./Dialogs.module.css"
 import DialogsSendMessageForm from "./DialogsMessages/DialogsSendMessageForm";
 import DialogsMessages from "./DialogsMessages/DialogsMessages";
 import {useDispatch, useSelector} from "react-redux";
-import {collection, getFirestore, limit, onSnapshot, orderBy, query, startAfter} from "firebase/firestore";
-import {initializeApp} from "firebase/app";
-import {firebaseConfig} from "../../firebase";
-import {additionalMessages, setLastMessages} from "../../reduxToolkit/slices/messagesSlice";
 import {useParams} from "react-router-dom";
 import DialogsAddUserPopap from "./DialogsAddUserPopap/DialogsAddUserPopap";
+import {loadMoreMessagesAPI} from "../api/dialogsAPI";
 
 
 const Dialogs = ({sendMessage, messages, loading, lastMessages,visiblePopapAddUser,visiblePopap,setVisiblePopap,addUserToDialogs,userFound,userAdded}) => {
@@ -20,10 +17,6 @@ const Dialogs = ({sendMessage, messages, loading, lastMessages,visiblePopapAddUs
     const windowHeghtRef = useRef(null)
     const lastElement = useRef(null)
     let dialogs = []
-
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-
 
     useEffect(() => {
         if (<DialogsSendMessageForm/> && fieldRef.current) {
@@ -61,31 +54,8 @@ const Dialogs = ({sendMessage, messages, loading, lastMessages,visiblePopapAddUs
         sendMessage(data.body)
     }
 
-
-
     const loadMoreMessages = () => {
-        const q = query(collection(db, `dialogs/${params.id}/messages`),
-            limit(30),
-            orderBy('createdAt', "desc"),
-            startAfter(lastMessages))
-        const unsubscribe = onSnapshot(q, (querySnapshot) => {
-            querySnapshot.forEach((doc) => {
-                const dateId = doc.data().createdAt.seconds + doc.data().createdAt.nanoseconds
-                let midleElement = {
-                    displayName:doc.data().displayName,
-                    photoURL: doc.data().photoURL,
-                    text: doc.data().text,
-                    uid:doc.data().uid,
-                    createdAt:new Date(doc.data().createdAt.seconds * 1000).toLocaleString(),
-                    idMessages:dateId
-
-                }
-                dialogs.push(midleElement)
-            });
-            dialogs.map(r => dispatch(additionalMessages(r)))
-            const lastMessages = querySnapshot.docs[querySnapshot.docs.length - 1];
-            dispatch(setLastMessages(lastMessages))
-        });
+        loadMoreMessagesAPI(params,lastMessages,dialogs,dispatch)
     }
 
 
@@ -98,7 +68,6 @@ const Dialogs = ({sendMessage, messages, loading, lastMessages,visiblePopapAddUs
                 {messages.map(m => <DialogsMessages displayName={m.displayName} text={m.text} uid={m.uid} id={id}
                                                     photoURL={m.photoURL} key={m.idMessages} />)}
             </div>
-
             <div className={cl.sendMessagesOrAddUser}  ref={fieldRef}>
                 <DialogsSendMessageForm createMessage={createMessage}/>
                 <div className={cl.addUserToChat} >
