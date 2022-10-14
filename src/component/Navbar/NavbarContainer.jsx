@@ -60,6 +60,7 @@ const NavbarContainer = () => {
 
 
     const createNewDialogs = async ({dialogsName}) => {
+        debugger
         await createDialogAPI(dialogsName, dispatch, id, dialogs)
     }
 
