@@ -7,6 +7,7 @@ import AuthorizationContainer from "./component/Authorization/AuthorizationConta
 import EmailVerificationContainer from "./component/EmailVerification/EmailVerificationContainer";
 import NavbarContainer from "./component/Navbar/NavbarContainer";
 import DialogsContainer from "./component/Dialogs/DialogsContainer";
+import PersonalCubnetContainer from "./component/PersonalCubnet/PersonalCubnetContainer";
 
 
 const App = () =>  {
@@ -23,6 +24,7 @@ const App = () =>  {
               <Route path={'/authorization'} element={<AuthorizationContainer/>} />
               <Route path={'/mailVerification'} element={<EmailVerificationContainer/>} />
               <Route path={'/dialogs/:id'} element={<DialogsContainer/>} />
+              <Route path={'/personalCubnet'} element={<PersonalCubnetContainer/>} />
           </Routes>
       </div>
     </div>

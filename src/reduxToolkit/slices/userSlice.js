@@ -20,6 +20,10 @@ const userSlice = createSlice({
             state.displayName = action.payload.displayName
             state.token = action.payload.token
         },
+        changeNameUsers(state,action){
+            debugger
+            state.displayName = action.payload.displayName
+        },
         removeUser(state,action) {
             state.email = null
             state.id = null
@@ -29,6 +33,6 @@ const userSlice = createSlice({
         },
     },
 })
-export const {setUser,removeUser,} = userSlice.actions
+export const {setUser,removeUser,changeNameUsers} = userSlice.actions
 
 export default  userSlice.reducer

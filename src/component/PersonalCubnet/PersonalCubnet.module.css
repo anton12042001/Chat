@@ -1,0 +1,28 @@
+.containerPersonalCubnet {
+    border: 1px solid black;
+}
+
+.displayName {
+    margin: 0 0 25px 0;
+}
+
+.id {
+
+}
+
+.email {
+margin: 0 0 50px 0;
+}
+
+.photoURL {
+    margin: 0 0 25px 0;
+}
+.idMeaning{
+    font-weight: bold;
+}
+.infoId{
+    width: 300px;
+    display: flex;
+    justify-content: flex-end;
+    font-size: 14px;
+}

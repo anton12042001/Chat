@@ -71,7 +71,7 @@ const Dialogs = ({sendMessage, messages, loading, lastMessages,visiblePopapAddUs
             <div className={cl.sendMessagesOrAddUser}  ref={fieldRef}>
                 <DialogsSendMessageForm createMessage={createMessage}/>
                 <div className={cl.addUserToChat} >
-                    <button onClick={visiblePopapAddUser} >Добавить пользователя в чат</button>
+                    <button onClick={visiblePopapAddUser}>Добавить пользователя в чат</button>
                     {(visiblePopap) && <DialogsAddUserPopap userAdded={userAdded} userFound={userFound} addUserToDialogs={addUserToDialogs} setVisiblePopap={setVisiblePopap}/>}
                 </div>
             </div>

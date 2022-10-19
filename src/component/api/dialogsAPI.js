@@ -62,12 +62,14 @@ export const NavbarDialogsObserverAPI = (dialogs, id, dispatch, dialogsForShow) 
 
 
 
-
+//TODO доработать отрисовку актуального имени пользователя, если он сменил имя
 export const loadInitialMessagesAPI = (params, dispatch, setLoading) => {
     const q = query(collection(db, `dialogs/${params.id}/messages`), limit(30), orderBy('createdAt', "desc"));
     const unsubscribe = onSnapshot(q, async (querySnapshot) => {
         let dialogs = []
         querySnapshot.forEach((doc) => {
+            debugger
+            console.log(doc)
             const dateId = doc.data().createdAt.seconds + doc.data().createdAt.nanoseconds
             let midleElement = {
                 displayName: doc.data().displayName,
