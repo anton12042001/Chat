@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import ChangePassword from "./ChangePassword";
 import {useSelector} from "react-redux";
 import {getAuth, sendPasswordResetEmail} from "firebase/auth";
-
 import cl from "../ChangeEmail/ChangeEmail.module.css";
 import ChangePopapForm from "../ChangePopapForm/ChangePopapForm";
 import {reAuthAPI} from "../../api/authAPI";

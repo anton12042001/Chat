@@ -10,7 +10,6 @@ const ChangeFullNameForm = ({changeFullNameUsers,setEditName}) => {
     } = useForm();
 
     const onSubmit = (data) => {
-        debugger
         reset()
         setEditName(false)
         changeFullNameUsers(data)

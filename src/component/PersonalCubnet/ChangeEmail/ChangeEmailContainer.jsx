@@ -32,9 +32,8 @@ const ChangeEmailContainer = ({email}) => {
             sendMessagesAPI().then(r => {
                 navigate('/mailVerification')
             })
-        }).catch((error) => {
+        }).catch(() => {
             setAuthPopap(true)
-
         });
     }
 
