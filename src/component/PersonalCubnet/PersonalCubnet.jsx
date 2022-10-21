@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import cl from './PersonalCubnet.module.css'
 import ChangeFullName from "./ChangeFullName/ChangeFullName";
 import ChangeFullNameContainer from "./ChangeFullName/ChangeFullNameContainer";
+import ChangeEmailContainer from "./ChangeEmail/ChangeEmailContainer";
 
 const PersonalCubnet = ({email,id,displayName,photoURL}) => {
 
@@ -15,7 +16,7 @@ const PersonalCubnet = ({email,id,displayName,photoURL}) => {
                 <button>Установить фотографию</button>}
             </div>
             <ChangeFullNameContainer id={id} displayName={displayName}/>
-            <div className={cl.email} >Email: <span>{email}</span></div>
+            <ChangeEmailContainer email={email} />
             <div className={cl.id} >Ваш ID: <span className={cl.idMeaning} >{id}</span></div>
             <div className={cl.infoId} >Зачем нужен id?</div>
         </div>

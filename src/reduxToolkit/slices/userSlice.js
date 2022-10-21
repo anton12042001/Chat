@@ -24,6 +24,9 @@ const userSlice = createSlice({
             debugger
             state.displayName = action.payload.displayName
         },
+        changeEmailUsers(state,action){
+            state.email = action.payload
+        },
         removeUser(state,action) {
             state.email = null
             state.id = null
@@ -33,6 +36,6 @@ const userSlice = createSlice({
         },
     },
 })
-export const {setUser,removeUser,changeNameUsers} = userSlice.actions
+export const {setUser,removeUser,changeNameUsers,changeEmailUsers} = userSlice.actions
 
 export default  userSlice.reducer

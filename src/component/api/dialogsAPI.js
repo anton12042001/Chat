@@ -88,10 +88,10 @@ export const loadInitialMessagesAPI = (params, dispatch, setLoading) => {
         setLoading(false)
     });
 }
+//TODO доработать отрисовку актуального имени пользователя, если он сменил имя
 
 
-
-
+//TODO доработать отрисовку актуального имени пользователя, если он сменил имя
 export const loadMoreMessagesAPI = (params,lastMessages,dialogs,dispatch) => {
     const q = query(collection(db, `dialogs/${params.id}/messages`),
         limit(30),
@@ -116,7 +116,7 @@ export const loadMoreMessagesAPI = (params,lastMessages,dialogs,dispatch) => {
         dispatch(setLastMessages(lastMessages))
     });
 }
-
+//TODO доработать отрисовку актуального имени пользователя, если он сменил имя
 
 
 

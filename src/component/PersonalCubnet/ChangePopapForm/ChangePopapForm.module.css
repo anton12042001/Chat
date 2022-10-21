@@ -1,0 +1,13 @@
+.reAuthForm{
+    opacity: 1;
+    border: 1px solid black;
+    height: 350px;
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #ffffff;
+    margin: 125px auto 125px auto;
+
+}
