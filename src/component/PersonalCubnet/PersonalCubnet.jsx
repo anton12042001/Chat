@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
+import React from 'react';
 import cl from './PersonalCubnet.module.css'
-import ChangeFullName from "./ChangeFullName/ChangeFullName";
 import ChangeFullNameContainer from "./ChangeFullName/ChangeFullNameContainer";
 import ChangeEmailContainer from "./ChangeEmail/ChangeEmailContainer";
+import ChangePasswordContainer from "./ChangePassword/ChangePasswordContainer";
 
 const PersonalCubnet = ({email,id,displayName,photoURL}) => {
 
@@ -19,6 +19,7 @@ const PersonalCubnet = ({email,id,displayName,photoURL}) => {
             <ChangeEmailContainer email={email} />
             <div className={cl.id} >Ваш ID: <span className={cl.idMeaning} >{id}</span></div>
             <div className={cl.infoId} >Зачем нужен id?</div>
+            <ChangePasswordContainer/>
         </div>
     );
 };
