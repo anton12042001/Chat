@@ -18,8 +18,8 @@ const NavbarContainer = () => {
 
 
 
-    const createNewDialogs = async ({dialogsName}) => {
-        await createDialogAPI(dialogsName, dispatch, id, dialogs)
+    const createNewDialogs = async ({dialogsName,uidDialogs},privateDialogs) => {
+        await createDialogAPI(dialogsName,uidDialogs, dispatch, id, dialogs,privateDialogs)
     }
 
 

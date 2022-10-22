@@ -12,7 +12,7 @@ const NewDialogsFormPublic = (props) => {
 
     const onSubmit = (data) => {
         reset()
-        props.setNewDialogsPublicDB(data)
+        props.createNewDialogsDB(data,false)
     }
 
     return (

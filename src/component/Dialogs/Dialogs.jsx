@@ -8,7 +8,7 @@ import DialogsAddUserPopap from "./DialogsAddUserPopap/DialogsAddUserPopap";
 import {loadMoreMessagesAPI} from "../api/dialogsAPI";
 
 
-const Dialogs = ({sendMessage, messages, loading, lastMessages,visiblePopapAddUser,visiblePopap,setVisiblePopap,addUserToDialogs,userFound,userAdded}) => {
+const Dialogs = ({privateDialogs,sendMessage, messages, loading, lastMessages,visiblePopapAddUser,visiblePopap,setVisiblePopap,addUserToDialogs,userFound,userAdded}) => {
     const {id} = useSelector(state => state.user)
     const params = useParams()
     const dispatch = useDispatch()
@@ -70,7 +70,9 @@ const Dialogs = ({sendMessage, messages, loading, lastMessages,visiblePopapAddUs
             </div>
             <div className={cl.sendMessagesOrAddUser}  ref={fieldRef}>
                 <DialogsSendMessageForm createMessage={createMessage}/>
+
                 <div className={cl.addUserToChat} >
+
                     <button onClick={visiblePopapAddUser}>Добавить пользователя в чат</button>
                     {(visiblePopap) && <DialogsAddUserPopap
                         userAdded={userAdded}

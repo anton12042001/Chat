@@ -6,7 +6,7 @@ import {setMessagesAPI} from "../api/messagesAPI";
 import {removeMessages} from "../../reduxToolkit/slices/messagesSlice";
 import Loader from "../UI/Loader";
 import cl from "./Dialogs.module.css"
-import {addUserToDialogsAPI, loadInitialMessagesAPI} from "../api/dialogsAPI";
+import {addUserToDialogsAPI, loadInitialInfoDialogsAPI, loadInitialMessagesAPI} from "../api/dialogsAPI";
 
 
 const DialogsContainer = () => {
@@ -26,6 +26,7 @@ const DialogsContainer = () => {
     useEffect(() => {
         dispatch(removeMessages())
         loadInitialMessagesAPI(params,dispatch,setLoading)
+        loadInitialInfoDialogsAPI(params,)
     }, [params])
 
     const visiblePopapAddUser = () => {
@@ -41,8 +42,6 @@ const DialogsContainer = () => {
     const sendMessage = async (body) => {
         await setMessagesAPI(params, body, photoURL, displayName, id)
     }
-
-
 
 
     if (loading || messages === null || messages === undefined) {

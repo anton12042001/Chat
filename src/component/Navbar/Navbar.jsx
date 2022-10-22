@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import cl from './Navbar.module.css'
-import NewDialogsFormPublic from "./NewDialogsForm/NewDialogsFormPublic/NewDialogsFormPublic";
 import {useSelector} from "react-redux";
 import NavbarDialogsList from "./NavbarDialogsList";
 import {useNavigate} from "react-router-dom";
@@ -13,8 +12,8 @@ const Navbar = (props) => {
     const {dialogsForShow} = useSelector(state => state.showDialogs)
     const navigate = useNavigate()
 
-    const setNewDialogsDB = (data) => {
-        props.createNewDialogs(data)
+    const setNewDialogsDB = (data,privateDialogs) => {
+        props.createNewDialogs(data,privateDialogs)
         setNewDialogs(false)
     }
 

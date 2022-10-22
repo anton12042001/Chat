@@ -7,7 +7,8 @@ import {
     limit,
     onSnapshot,
     orderBy,
-    query, startAfter,
+    query,
+    startAfter,
     updateDoc
 } from "firebase/firestore";
 import {initializeApp} from "firebase/app";
@@ -24,12 +25,12 @@ const db = getFirestore(app);
 
 
 
-
-export const createDialogAPI = async (dialogsName,dispatch,id,dialogs) => {
+export const createDialogAPI = async (dialogsName,uidDialogs,dispatch,id,dialogs,privateDialogs) => {
     const docRef = await addDoc(collection(db, "dialogs"), {
         admin:id,
         dialogsName:dialogsName,
-        users:[id],
+        users:(privateDialogs) ? [id,uidDialogs] : [id],
+        privateDialogs
     })
     const dialogsRef = doc(db, "users", id);
     let dialogsList = [...dialogs]
@@ -40,8 +41,6 @@ export const createDialogAPI = async (dialogsName,dispatch,id,dialogs) => {
     });
     dispatch(setDialogs(dialogsList))
 }
-
-
 
 
 
@@ -61,6 +60,36 @@ export const NavbarDialogsObserverAPI = (dialogs, id, dispatch, dialogsForShow) 
 
 
 
+export const loadInitialInfoDialogsAPI = async (params,) => {
+    const docRef = doc(db, `dialogs/${params.id}`);
+    const docSnap = await getDoc(docRef);
+    const usersRef = doc(db, `users/${docSnap.data().users[docSnap.data().users.length - 1]}`);
+    const docSnapUsers = await getDoc(usersRef);
+    if(docSnapUsers.data().dialogs.indexOf(params.id) != -1) {  //Проверка, есть ли в личной инфе юзера приватная беседа
+        return
+    }else{
+        if (docSnap.exists()) {
+            if(docSnap.data().privateDialogs){
+                const docSnapUsers = await getDoc(usersRef);
+                const dialogsList = docSnapUsers.data().dialogs
+                if (docSnapUsers.data().dialogs) {
+                    dialogsList.push(params.id)                          //Добавляет юзеру в личную инфу id беседы, если список бесед есть
+                    await updateDoc(usersRef, {
+                        dialogs: dialogsList
+                    });
+                } else {
+                    await updateDoc(usersRef, {                     //Добавляет юзеру в личную инфу id беседы, если списка бесед нет
+                        dialogs: [params.id]
+                    });
+                }
+            }
+        }
+    }
+}
+
+
+
+
 
 //TODO доработать отрисовку актуального имени пользователя, если он сменил имя
 export const loadInitialMessagesAPI = (params, dispatch, setLoading) => {
@@ -69,7 +98,6 @@ export const loadInitialMessagesAPI = (params, dispatch, setLoading) => {
         let dialogs = []
         querySnapshot.forEach((doc) => {
             debugger
-            console.log(doc)
             const dateId = doc.data().createdAt.seconds + doc.data().createdAt.nanoseconds
             let midleElement = {
                 displayName: doc.data().displayName,
@@ -117,9 +145,6 @@ export const loadMoreMessagesAPI = (params,lastMessages,dialogs,dispatch) => {
     });
 }
 //TODO доработать отрисовку актуального имени пользователя, если он сменил имя
-
-
-
 
 
 

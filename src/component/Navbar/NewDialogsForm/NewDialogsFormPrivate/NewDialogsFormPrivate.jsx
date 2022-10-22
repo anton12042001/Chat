@@ -12,7 +12,7 @@ const NewDialogsFormPrivate = (props) => {
 
     const onSubmit = (data) => {
         reset()
-        props.setNewDialogsDB(data)
+        props.createNewDialogsDB(data,true)
     }
 
     return (
@@ -20,9 +20,13 @@ const NewDialogsFormPrivate = (props) => {
             Создайте новый приватный диалог!
             <div className={cl.popap} >
                 <form onSubmit={handleSubmit(onSubmit)}>
-                    <div>
+                    <div className={cl.dialogsName} >
                         <label>Укажите название для будущего диалога </label>
                         <input placeholder={"Название диалога"} {...register("dialogsName")} type="text"/>
+                    </div>
+                    <div className={cl.dialogsUid} >
+                        <label>Введите id пользователя, с которым хотите начать диалог</label>
+                        <input placeholder={"id пользователя"} {...register("uidDialogs")} type="text"/>
                     </div>
                     <button type={"submit"}>Создать</button>
                 </form>
