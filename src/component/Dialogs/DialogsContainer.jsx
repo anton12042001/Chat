@@ -20,13 +20,16 @@ const DialogsContainer = () => {
     const [visiblePopap, setVisiblePopap] = useState(false)
     const [userFound, setUserFound] = useState(false)
     const [userAdded,setUserAdded] = useState(false)
+    const [privateDialog,setPrivateDialog] = useState(false)
 
 
 
     useEffect(() => {
+
         dispatch(removeMessages())
         loadInitialMessagesAPI(params,dispatch,setLoading)
-        loadInitialInfoDialogsAPI(params,)
+        loadInitialInfoDialogsAPI(params,setPrivateDialog)
+        setPrivateDialog(true)
     }, [params])
 
     const visiblePopapAddUser = () => {
@@ -55,6 +58,7 @@ const DialogsContainer = () => {
     return (
         <div className={cl.dialogsContainer}>
             <Dialogs
+                privateDialog={privateDialog}
                 userAdded={userAdded}
                 userFound={userFound}
                 lastMessages={lastMessages}

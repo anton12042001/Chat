@@ -34,7 +34,6 @@ const Navbar = (props) => {
 
             {newDialogs &&
                 <div onClick={() => setNewDialogs(false)} className={cl.popapDialogsForm}>
-
                     <NewDialogsForm setPrivateDialogs={setPrivateDialogs} privateDialogs={privateDialogs} setNewDialogsDB={setNewDialogsDB}/>
                 </div>}
 
