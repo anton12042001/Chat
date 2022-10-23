@@ -1,7 +1,7 @@
 import React from 'react';
 import cl from "../Dialogs.module.css"
 
-const DialogsMessages = ({displayName,text,uid,photoURL, id}) => {
+const DialogsMessages = ({displayName,text,uid,photoURL, id,createdAt}) => {
 
 
 
@@ -11,6 +11,7 @@ const DialogsMessages = ({displayName,text,uid,photoURL, id}) => {
                 <div className={cl.messagesElement} >
                     <div className={(uid === id) ? cl.myMessage : cl.userMessage}  >
                         <div>{displayName}</div>
+                        <div className={cl.createdAt} >{createdAt}</div>
                         <div>{text}</div>
                     </div>
                 </div>

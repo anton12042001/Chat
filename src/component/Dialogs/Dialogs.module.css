@@ -20,13 +20,15 @@
     min-width: 200px;
 }
 .myMessage {
-
+    padding: 0 0 15px 0;
     align-self: flex-end;
     height: 50px;
     border: 1px dashed teal;
 
 }
 .userMessage {
+    padding: 0 0 15px 0;
+
     width: fit-content;
     align-self: flex-start;
     height: 50px;
@@ -58,4 +60,10 @@
 }
 .addUserToChat{
     margin:  15px 0 30px 50px;
+}
+.createdAt{
+    font-size: 12px;
+    color: slategrey;
+    padding: 0 0 15px 0;
+
 }

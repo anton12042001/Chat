@@ -12,11 +12,12 @@ const Dialogs = ({privateDialog,sendMessage, messages, loading, lastMessages,vis
     const {id} = useSelector(state => state.user)
     const params = useParams()
     const dispatch = useDispatch()
-    const [countLoadingMessages, setCountLoadingMessages] = useState(-1);
+    const [countLoadingMessages, setCountLoadingMessages] = useState(0);
     const fieldRef = useRef(null)
     const windowHeghtRef = useRef(null)
     const lastElement = useRef(null)
     let dialogs = []
+
 
     useEffect(() => {
         if (<DialogsSendMessageForm/> && fieldRef.current) {
@@ -28,9 +29,9 @@ const Dialogs = ({privateDialog,sendMessage, messages, loading, lastMessages,vis
     useEffect(() => {
         if (messages.length % 30 === 0) {
             setCountLoadingMessages(countLoadingMessages + 1)
-            window.scrollTo(0, 1850)
+            window.scrollTo(0, 2330)
         } else {
-            let scrollTop = windowHeghtRef.current.clientHeight - (countLoadingMessages * 1850)
+            let scrollTop = windowHeghtRef.current.clientHeight - (countLoadingMessages * 2330)
             window.scrollTo(0, scrollTop)
         }
     }, [lastMessages])
@@ -66,7 +67,7 @@ const Dialogs = ({privateDialog,sendMessage, messages, loading, lastMessages,vis
                 <div className={cl.lastElement}  ref={lastElement}></div>
                 {(messages.length === 0) && <div className={cl.noMessages} >В этом диалоге нет сообщений</div>}
                 {messages.map(m => <DialogsMessages displayName={m.displayName} text={m.text} uid={m.uid} id={id}
-                                                    photoURL={m.photoURL} key={m.idMessages} />)}
+                                                    photoURL={m.photoURL} key={m.idMessages} createdAt={m.createdAt} />)}
             </div>
             <div className={cl.sendMessagesOrAddUser}  ref={fieldRef}>
                 <DialogsSendMessageForm createMessage={createMessage}/>

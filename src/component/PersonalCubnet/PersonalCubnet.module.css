@@ -18,8 +18,23 @@
     font-weight: bold;
 }
 .infoId{
+    cursor: pointer;
+    position: relative;
     width: 300px;
     display: flex;
     justify-content: flex-end;
     font-size: 14px;
+}
+.popapInfoId{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    border: 1px solid black;
+    width: 350px;
+    height: 250px;
+    background: white;
+    position: absolute;
+    top: 15px;
+    left: 300px;
 }
