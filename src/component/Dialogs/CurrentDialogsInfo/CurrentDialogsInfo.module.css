@@ -1,0 +1,19 @@
+.currentDialogsContainer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+
+    width: 785px;
+    margin: 0 0 0 750px;
+}
+.dialogsAction{
+    border: 1px solid black;
+    width: 250px;
+    height: 400px;
+    position: absolute;
+    top: 35px;
+    right: 115px;
+    z-index: 100;
+    background: white;
+}

@@ -94,7 +94,6 @@ export const loadInitialMessagesAPI = (params, dispatch, setLoading) => {
     const unsubscribe = onSnapshot(q, async (querySnapshot) => {
         let dialogs = []
         querySnapshot.forEach((doc) => {
-            debugger
             const dateId = doc.data().createdAt.seconds + doc.data().createdAt.nanoseconds
             let midleElement = {
                 displayName: doc.data().displayName,

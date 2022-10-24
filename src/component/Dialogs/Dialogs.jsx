@@ -6,9 +6,12 @@ import {useDispatch, useSelector} from "react-redux";
 import {useParams} from "react-router-dom";
 import DialogsAddUserPopap from "./DialogsAddUserPopap/DialogsAddUserPopap";
 import {loadMoreMessagesAPI} from "../api/dialogsAPI";
+import CurrentDialogsInfo from "./CurrentDialogsInfo/CurrentDialogsInfo";
+import CurrentDialogsInfoContainer from "./CurrentDialogsInfo/CurrentDialogsInfoContainer";
 
 
-const Dialogs = ({privateDialog,sendMessage, messages, loading, lastMessages,visiblePopapAddUser,visiblePopap,setVisiblePopap,addUserToDialogs,userFound,userAdded}) => {
+const Dialogs = ({privateDialog,sendMessage, messages, loading, lastMessages,visiblePopapAddUser,
+                     visiblePopap,setVisiblePopap,addUserToDialogs,userFound,userAdded}) => {
     const {id} = useSelector(state => state.user)
     const params = useParams()
     const dispatch = useDispatch()
@@ -63,6 +66,7 @@ const Dialogs = ({privateDialog,sendMessage, messages, loading, lastMessages,vis
 
     return (
         <div className={cl.container}>
+            <div className={cl.dialogsInfo}><CurrentDialogsInfoContainer/></div>
             <div ref={windowHeghtRef}>
                 <div className={cl.lastElement}  ref={lastElement}></div>
                 {(messages.length === 0) && <div className={cl.noMessages} >В этом диалоге нет сообщений</div>}
@@ -71,11 +75,8 @@ const Dialogs = ({privateDialog,sendMessage, messages, loading, lastMessages,vis
             </div>
             <div className={cl.sendMessagesOrAddUser}  ref={fieldRef}>
                 <DialogsSendMessageForm createMessage={createMessage}/>
-
                 <div className={cl.addUserToChat} >
-
                     {!privateDialog && <button onClick={visiblePopapAddUser}>Добавить пользователя в чат</button>}
-
                     {(visiblePopap) && <DialogsAddUserPopap
                         userAdded={userAdded}
                         userFound={userFound}

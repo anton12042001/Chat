@@ -65,5 +65,12 @@
     font-size: 12px;
     color: slategrey;
     padding: 0 0 15px 0;
-
+}
+.dialogsInfo{
+    border: 1px solid black;
+    height: 50px;
+    background: white;
+    position: fixed;
+    top: 50px;
+    width: 1570px;
 }
