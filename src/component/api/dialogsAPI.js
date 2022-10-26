@@ -1,15 +1,6 @@
 import {
-    addDoc,
-    collection,
-    doc,
-    getDoc,
-    getFirestore,
-    limit,
-    onSnapshot,
-    orderBy,
-    query,
-    startAfter,
-    updateDoc
+    addDoc, collection, doc, getDoc, getFirestore, limit,
+    onSnapshot, orderBy, query, startAfter, updateDoc
 } from "firebase/firestore";
 import {initializeApp} from "firebase/app";
 import {firebaseConfig} from "../../firebase";
