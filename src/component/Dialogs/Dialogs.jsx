@@ -6,12 +6,14 @@ import {useDispatch, useSelector} from "react-redux";
 import {useParams} from "react-router-dom";
 import DialogsAddUserPopap from "./DialogsAddUserPopap/DialogsAddUserPopap";
 import {loadMoreMessagesAPI} from "../api/dialogsAPI";
-import CurrentDialogsInfo from "./CurrentDialogsInfo/CurrentDialogsInfo";
 import CurrentDialogsInfoContainer from "./CurrentDialogsInfo/CurrentDialogsInfoContainer";
+import DialogsPopapDeleteUser from "./DialogsPopapDeleteUser/DialogsPopapDeleteUser";
 
 
-const Dialogs = ({privateDialog,sendMessage, messages, loading, lastMessages,visiblePopapAddUser,
-                     visiblePopap,setVisiblePopap,addUserToDialogs,userFound,userAdded}) => {
+const Dialogs = ({
+                     privateDialog, sendMessage, messages, loading, lastMessages, visiblePopapAddUser,
+                     visiblePopap, setVisiblePopap, addUserToDialogs, userFound, userAdded
+                 }) => {
     const {id} = useSelector(state => state.user)
     const params = useParams()
     const dispatch = useDispatch()
@@ -19,6 +21,7 @@ const Dialogs = ({privateDialog,sendMessage, messages, loading, lastMessages,vis
     const fieldRef = useRef(null)
     const windowHeghtRef = useRef(null)
     const lastElement = useRef(null)
+    const [popapDeleteUser, setPopapDeleteUser] = useState(false)
     let dialogs = []
 
 
@@ -52,30 +55,27 @@ const Dialogs = ({privateDialog,sendMessage, messages, loading, lastMessages,vis
     }, [countLoadingMessages]);
 
 
-
-
     const createMessage = (data) => {
         sendMessage(data.body)
     }
 
     const loadMoreMessages = () => {
-        loadMoreMessagesAPI(params,lastMessages,dialogs,dispatch)
+        loadMoreMessagesAPI(params, lastMessages, dialogs, dispatch)
     }
-
 
 
     return (
         <div className={cl.container}>
-            <div className={cl.dialogsInfo}><CurrentDialogsInfoContainer/></div>
+            <div className={cl.dialogsInfo}><CurrentDialogsInfoContainer setPopapDeleteUser={setPopapDeleteUser}/></div>
             <div ref={windowHeghtRef}>
-                <div className={cl.lastElement}  ref={lastElement}></div>
-                {(messages.length === 0) && <div className={cl.noMessages} >В этом диалоге нет сообщений</div>}
+                <div className={cl.lastElement} ref={lastElement}></div>
+                {(messages.length === 0) && <div className={cl.noMessages}>В этом диалоге нет сообщений</div>}
                 {messages.map(m => <DialogsMessages displayName={m.displayName} text={m.text} uid={m.uid} id={id}
-                                                    photoURL={m.photoURL} key={m.idMessages} createdAt={m.createdAt} />)}
+                                                    photoURL={m.photoURL} key={m.idMessages} createdAt={m.createdAt}/>)}
             </div>
-            <div className={cl.sendMessagesOrAddUser}  ref={fieldRef}>
+            <div className={cl.sendMessagesOrAddUser} ref={fieldRef}>
                 <DialogsSendMessageForm createMessage={createMessage}/>
-                <div className={cl.addUserToChat} >
+                <div className={cl.addUserToChat}>
                     {!privateDialog && <button onClick={visiblePopapAddUser}>Добавить пользователя в чат</button>}
                     {(visiblePopap) && <DialogsAddUserPopap
                         userAdded={userAdded}
@@ -84,6 +84,10 @@ const Dialogs = ({privateDialog,sendMessage, messages, loading, lastMessages,vis
                         setVisiblePopap={setVisiblePopap}/>}
                 </div>
             </div>
+            {
+                (popapDeleteUser) && <div className={cl.popapDeleteUser}><DialogsPopapDeleteUser/></div>
+
+            }
         </div>
     );
 };

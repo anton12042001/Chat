@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {useParams} from "react-router-dom";
 import {setCurrentDialogs} from "../../../reduxToolkit/slices/showDialogs";
 
-const CurrentDialogsInfoContainer = () => {
+const CurrentDialogsInfoContainer = ({setPopapDeleteUser}) => {
 
     const {dialogsForShow} = useSelector(state => state.showDialogs)
     const params = useParams()
@@ -19,7 +19,7 @@ const CurrentDialogsInfoContainer = () => {
 
     return (
         <div>
-            <CurrentDialogsInfo/>
+            <CurrentDialogsInfo setPopapDeleteUser={setPopapDeleteUser}/>
         </div>
     );
 };
