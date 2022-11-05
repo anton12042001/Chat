@@ -7,6 +7,7 @@ import {firebaseConfig} from "../../firebase";
 import {removeDialogs, setDialogs} from "../../reduxToolkit/slices/dialogsIdSlice";
 import {NavbarShowDialogs} from "../Home/NavbarShowDialogs";
 import {additionalMessages, setLastMessages, setMessages} from "../../reduxToolkit/slices/messagesSlice";
+import {setCurrentDialogsUserInfo} from "../../reduxToolkit/slices/showDialogs";
 
 
 const app = initializeApp(firebaseConfig);
@@ -165,5 +166,29 @@ export const addUserToDialogsAPI = async (params, data, setUserFound, setUserAdd
             });
         }
         setUserAdded(true)
+    }
+}
+
+
+
+export const getUserInfoCurrentDialogAPI = async (users,dispatch) => {
+    users.map(async u => {
+        const docRef = doc(db, "users", `${u}`);
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+            dispatch(setCurrentDialogsUserInfo(docSnap.data()))
+        }
+    })
+}
+
+
+export const deleteUserFromDialogsAPI = async (userId) => {
+    debugger
+    const arrayDialogsUser = []
+    const docRef = doc(db, "users", `${userId}`);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+        console.log("Document data:", docSnap.data());
     }
 }

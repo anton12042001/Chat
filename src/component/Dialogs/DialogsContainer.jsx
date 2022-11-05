@@ -6,7 +6,12 @@ import {setMessagesAPI} from "../api/messagesAPI";
 import {removeMessages} from "../../reduxToolkit/slices/messagesSlice";
 import Loader from "../UI/Loader";
 import cl from "./Dialogs.module.css"
-import {addUserToDialogsAPI, loadInitialInfoDialogsAPI, loadInitialMessagesAPI} from "../api/dialogsAPI";
+import {
+    addUserToDialogsAPI,
+    deleteUserFromDialogsAPI, getUserInfoCurrentDialogAPI,
+    loadInitialInfoDialogsAPI,
+    loadInitialMessagesAPI
+} from "../api/dialogsAPI";
 
 
 const DialogsContainer = () => {
@@ -25,7 +30,6 @@ const DialogsContainer = () => {
 
 
     useEffect(() => {
-
         dispatch(removeMessages())
         loadInitialMessagesAPI(params,dispatch,setLoading)
         loadInitialInfoDialogsAPI(params,setPrivateDialog)
@@ -45,6 +49,18 @@ const DialogsContainer = () => {
     const sendMessage = async (body) => {
         await setMessagesAPI(params, body, photoURL, displayName, id)
     }
+//todo сделать удаление юзера
+    const deleteUserFromDialogs = (userId,dialogId) => {
+        deleteUserFromDialogsAPI(userId,dialogId)
+        debugger
+    }
+//todo сделать удаление юзера
+
+    const getUserInfoCurrentDialog = (users) => {
+        getUserInfoCurrentDialogAPI(users,dispatch)
+    }
+
+
 
 
     if (loading || messages === null || messages === undefined) {
@@ -58,6 +74,8 @@ const DialogsContainer = () => {
     return (
         <div className={cl.dialogsContainer}>
             <Dialogs
+                getUserInfoCurrentDialog={getUserInfoCurrentDialog}
+                deleteUserFromDialogs={deleteUserFromDialogs}
                 privateDialog={privateDialog}
                 userAdded={userAdded}
                 userFound={userFound}

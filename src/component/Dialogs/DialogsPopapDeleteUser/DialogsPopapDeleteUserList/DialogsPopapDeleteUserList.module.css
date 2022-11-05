@@ -1,0 +1,16 @@
+.userInfoDisplayName{
+    border: 1px solid black;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    padding: 0 15px 0 15px ;
+    background: white;
+}
+.userInfoDisplayNameActive{
+    border: 1px solid black;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    padding: 0 15px 0 15px ;
+    background: #b7b5b5;
+}

@@ -1,11 +1,19 @@
 import React from 'react';
-import DialogsPopapDeleteUserForm from "./DialogsPopapDeleteUserForm";
-import cl from './DialogsPopapDeleteUser.module.css'
+import cl from '../Dialogs.module.css'
+import {useSelector} from "react-redux";
+import DialogsPopapDeleteUserList from "./DialogsPopapDeleteUserList/DialogsPopapDeleteUserList";
 
-const DialogsPopapDeleteUser = () => {
+const DialogsPopapDeleteUser = ({deleteUserFromDialogParams}) => {
+    const {currentDialogsUserInfo} = useSelector(state => state.showDialogs)
+    console.log(currentDialogsUserInfo)
+
+
+
     return (
-        <div >
-            <DialogsPopapDeleteUserForm/>
+        <div onClick={(e) => e.stopPropagation()} className={cl.deleteUserWrapper} >
+            <div className={cl.deleteUser}>
+                {currentDialogsUserInfo.map(u =>  <DialogsPopapDeleteUserList deleteUserFromDialogParams={deleteUserFromDialogParams} userInfo={u}/>)}
+            </div>
         </div>
     );
 };

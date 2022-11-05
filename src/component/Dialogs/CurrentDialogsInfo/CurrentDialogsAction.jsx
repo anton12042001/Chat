@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import cl from './CurrentDialogsInfo.module.css'
-import DialogsPopapDeleteUser from "../DialogsPopapDeleteUser/DialogsPopapDeleteUser";
+import DialogsPopapDeleteUserContainer from "../DialogsPopapDeleteUser/DialogsPopapDeleteUserContainer";
 
 const CurrentDialogsAction = ({setPopapDeleteUser,id, currentDialogs}) => {
 

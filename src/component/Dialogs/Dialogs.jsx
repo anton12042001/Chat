@@ -7,11 +7,11 @@ import {useParams} from "react-router-dom";
 import DialogsAddUserPopap from "./DialogsAddUserPopap/DialogsAddUserPopap";
 import {loadMoreMessagesAPI} from "../api/dialogsAPI";
 import CurrentDialogsInfoContainer from "./CurrentDialogsInfo/CurrentDialogsInfoContainer";
-import DialogsPopapDeleteUser from "./DialogsPopapDeleteUser/DialogsPopapDeleteUser";
+import DialogsPopapDeleteUserContainer from "./DialogsPopapDeleteUser/DialogsPopapDeleteUserContainer";
 
 
 const Dialogs = ({
-                     privateDialog, sendMessage, messages, loading, lastMessages, visiblePopapAddUser,
+                     getUserInfoCurrentDialog,deleteUserFromDialogs, privateDialog, sendMessage, messages, loading, lastMessages, visiblePopapAddUser,
                      visiblePopap, setVisiblePopap, addUserToDialogs, userFound, userAdded
                  }) => {
     const {id} = useSelector(state => state.user)
@@ -55,6 +55,15 @@ const Dialogs = ({
     }, [countLoadingMessages]);
 
 
+    const deleteUserFromDialogParams = (id) => {
+        debugger
+        const dialogId = params.id
+        deleteUserFromDialogs(id,dialogId)
+    }
+
+
+
+
     const createMessage = (data) => {
         sendMessage(data.body)
     }
@@ -85,7 +94,9 @@ const Dialogs = ({
                 </div>
             </div>
             {
-                (popapDeleteUser) && <div className={cl.popapDeleteUser}><DialogsPopapDeleteUser/></div>
+                (popapDeleteUser) && <div onClick={() => setPopapDeleteUser(false)} className={cl.popapDeleteUser}>
+                    <DialogsPopapDeleteUserContainer deleteUserFromDialogParams={deleteUserFromDialogParams} getUserInfoCurrentDialog={getUserInfoCurrentDialog} />
+                </div>
 
             }
         </div>
