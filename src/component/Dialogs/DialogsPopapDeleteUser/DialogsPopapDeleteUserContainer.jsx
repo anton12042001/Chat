@@ -5,9 +5,8 @@ import {useSelector} from "react-redux";
 const DialogsPopapDeleteUserContainer = ({deleteUserFromDialogParams,getUserInfoCurrentDialog}) => {
     const {currentDialogs, currentDialogsUserInfo} = useSelector(state => state.showDialogs)
 
-
     useEffect(() => {
-        if (currentDialogsUserInfo === 0) {
+        if (currentDialogsUserInfo.length === 0) {
             getUserInfoCurrentDialog(currentDialogs.info.users)
         }
     }, [])

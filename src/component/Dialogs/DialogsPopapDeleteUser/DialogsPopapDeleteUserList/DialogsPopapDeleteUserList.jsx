@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import cl from './DialogsPopapDeleteUserList.module.css'
 
-const DialogsPopapDeleteUserList = ({deleteUserFromDialogParams,userInfo}) => {
+const DialogsPopapDeleteUserList = ({deleteUserFromDialogParams,displayName,id}) => {
+
 
     const [itemActive,setItemActive] = useState(false)
 
@@ -15,9 +16,9 @@ const DialogsPopapDeleteUserList = ({deleteUserFromDialogParams,userInfo}) => {
             <div
             onMouseOut={() => setItemActive(false)}
                 onMouseOver={() => setItemActive(true)}
-            onClick={() => deleteUserId(userInfo.id)}
+            onClick={() => deleteUserId(id)}
                  className={(itemActive) ? cl.userInfoDisplayNameActive : cl.userInfoDisplayName} >
-                {userInfo.displayName}
+                {displayName}
             </div>
         </div>
     );

@@ -182,13 +182,35 @@ export const getUserInfoCurrentDialogAPI = async (users,dispatch) => {
 }
 
 
-export const deleteUserFromDialogsAPI = async (userId) => {
-    debugger
+export const deleteUserFromDialogsAPI = async (userId,dialogId) => {
     const arrayDialogsUser = []
-    const docRef = doc(db, "users", `${userId}`);
-    const docSnap = await getDoc(docRef);
+    const arrayUsers = []
 
-    if (docSnap.exists()) {
-        console.log("Document data:", docSnap.data());
+    const userRef = doc(db, "users", `${userId}`);
+    const docSnapUsers = await getDoc(userRef);
+
+    const dialogsRef = doc(db, "dialogs", `${dialogId}`);
+    const docSnapDialogs = await getDoc(dialogsRef);
+
+
+    if (docSnapUsers.exists()) {
+        docSnapUsers.data().dialogs.map(d => {
+            if(d !== dialogId ){
+                arrayDialogsUser.push(d)
+            }
+        })
+        await updateDoc(userRef, {
+            dialogs: arrayDialogsUser
+        });
+    }
+    if(docSnapDialogs.exists()){
+        docSnapDialogs.data().users.map(u => {
+            if(u !== userId){
+                arrayUsers.push(u)
+            }
+        })
+        await updateDoc(dialogsRef, {
+            users: arrayUsers
+        });
     }
 }

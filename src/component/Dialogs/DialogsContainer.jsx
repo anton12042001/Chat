@@ -52,6 +52,9 @@ const DialogsContainer = () => {
 //todo сделать удаление юзера
     const deleteUserFromDialogs = (userId,dialogId) => {
         deleteUserFromDialogsAPI(userId,dialogId)
+            .then(() => {
+                console.log('исключил')
+            })
         debugger
     }
 //todo сделать удаление юзера
