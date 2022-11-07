@@ -8,10 +8,15 @@ import Loader from "../UI/Loader";
 import cl from "./Dialogs.module.css"
 import {
     addUserToDialogsAPI,
-    deleteUserFromDialogsAPI, getUserInfoCurrentDialogAPI,
+    deleteUserFromDialogsAPI, dialogueSubscription, getUserInfoCurrentDialogAPI,
     loadInitialInfoDialogsAPI,
     loadInitialMessagesAPI
 } from "../api/dialogsAPI";
+import {
+    removeCurrentDialogs,
+    removeCurrentDialogsUserInfo,
+    setCurrentDialogs, setCurrentDialogsUserInfo
+} from "../../reduxToolkit/slices/showDialogs";
 
 
 const DialogsContainer = () => {
@@ -26,6 +31,25 @@ const DialogsContainer = () => {
     const [userFound, setUserFound] = useState(false)
     const [userAdded,setUserAdded] = useState(false)
     const [privateDialog,setPrivateDialog] = useState(false)
+    const [currentDialogInfo,setCurrentDialogInfo] = useState({
+        info:{
+            admin: null ,
+            dialogsName: null,
+            privateDialogs: null,
+            users: null,
+        },
+        id:null
+    })
+
+
+
+    useEffect(() => {
+        dialogueSubscription(params,dispatch,setCurrentDialogInfo,currentDialogInfo)
+    },[])
+
+    useEffect(() => {
+        dispatch(setCurrentDialogs(currentDialogInfo))
+    },[currentDialogInfo])
 
 
 
@@ -53,7 +77,7 @@ const DialogsContainer = () => {
     const deleteUserFromDialogs = (userId,dialogId) => {
         deleteUserFromDialogsAPI(userId,dialogId)
             .then(() => {
-                console.log('исключил')
+
             })
         debugger
     }

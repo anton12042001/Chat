@@ -9,7 +9,7 @@ const db = getFirestore(app);
 
 export const setMessagesAPI = async (params, body, photoURL, displayName, id) => {
     let date = serverTimestamp()
-    console.log(date)
+
     try {
         debugger
         const docRef = await addDoc(collection(db, `dialogs/${params.id}/messages`), {
@@ -19,7 +19,7 @@ export const setMessagesAPI = async (params, body, photoURL, displayName, id) =>
             text: body,
             createdAt: serverTimestamp()
         });
-        console.log("Document written with ID: ", docRef.id);
+
     } catch (e) {
         console.error("Error adding document: ", e);
     }

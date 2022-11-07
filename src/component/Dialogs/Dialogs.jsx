@@ -10,10 +10,8 @@ import CurrentDialogsInfoContainer from "./CurrentDialogsInfo/CurrentDialogsInfo
 import DialogsPopapDeleteUserContainer from "./DialogsPopapDeleteUser/DialogsPopapDeleteUserContainer";
 
 
-const Dialogs = ({
-                     getUserInfoCurrentDialog,deleteUserFromDialogs, privateDialog, sendMessage, messages, loading, lastMessages, visiblePopapAddUser,
-                     visiblePopap, setVisiblePopap, addUserToDialogs, userFound, userAdded
-                 }) => {
+const Dialogs = ({getUserInfoCurrentDialog,deleteUserFromDialogs, privateDialog, sendMessage,
+                     messages, loading, lastMessages, visiblePopapAddUser, visiblePopap, setVisiblePopap, addUserToDialogs, userFound, userAdded}) => {
     const {id} = useSelector(state => state.user)
     const params = useParams()
     const dispatch = useDispatch()
@@ -22,6 +20,7 @@ const Dialogs = ({
     const windowHeghtRef = useRef(null)
     const lastElement = useRef(null)
     const [popapDeleteUser, setPopapDeleteUser] = useState(false)
+
     let dialogs = []
 
 
@@ -30,6 +29,9 @@ const Dialogs = ({
             fieldRef.current.scrollIntoView(false)
         }
     }, [loading])
+
+
+
 
 
     useEffect(() => {

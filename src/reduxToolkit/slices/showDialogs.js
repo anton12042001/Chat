@@ -2,7 +2,7 @@ import {createSlice} from "@reduxjs/toolkit";
 
 const initialState = {
     dialogsForShow: [],
-    currentDialogs:{},
+    currentDialogs:null,
     currentDialogsUserInfo:[]
 
 }
@@ -16,18 +16,25 @@ const showDialogs = createSlice({
             state.dialogsForShow.push(action.payload)
         },
         setCurrentDialogs(state,action){
+            debugger
             state.currentDialogs = action.payload
         },
         setCurrentDialogsUserInfo(state,action){
             state.currentDialogsUserInfo.push(action.payload)
         },
+        removeCurrentDialogs(state){
+            state.currentDialogs = null
+        },
+        removeCurrentDialogsUserInfo(state){
+            state.currentDialogsUserInfo = []
+        },
         removeDialogsList(state, action) {
             state.dialogsForShow = []
-            state.currentDialogs = {}
+            state.currentDialogs = null
             state.currentDialogsUserInfo = []
         }
     },
 })
-export const {removeDialogsList, setDialogsForShow,setCurrentDialogs,setCurrentDialogsUserInfo} = showDialogs.actions
+export const {removeDialogsList, setDialogsForShow,setCurrentDialogs,setCurrentDialogsUserInfo,removeCurrentDialogs,removeCurrentDialogsUserInfo} = showDialogs.actions
 
 export default showDialogs.reducer

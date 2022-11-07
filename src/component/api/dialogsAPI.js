@@ -7,11 +7,18 @@ import {firebaseConfig} from "../../firebase";
 import {removeDialogs, setDialogs} from "../../reduxToolkit/slices/dialogsIdSlice";
 import {NavbarShowDialogs} from "../Home/NavbarShowDialogs";
 import {additionalMessages, setLastMessages, setMessages} from "../../reduxToolkit/slices/messagesSlice";
-import {setCurrentDialogsUserInfo} from "../../reduxToolkit/slices/showDialogs";
+import {
+    removeCurrentDialogsUserInfo,
+    setCurrentDialogs,
+    setCurrentDialogsUserInfo
+} from "../../reduxToolkit/slices/showDialogs";
 
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+
+
+
 
 
 export const createDialogAPI = async (dialogsName, uidDialogs, dispatch, id, dialogs, privateDialogs) => {
@@ -172,6 +179,7 @@ export const addUserToDialogsAPI = async (params, data, setUserFound, setUserAdd
 
 
 export const getUserInfoCurrentDialogAPI = async (users,dispatch) => {
+    dispatch(removeCurrentDialogsUserInfo())
     users.map(async u => {
         const docRef = doc(db, "users", `${u}`);
         const docSnap = await getDoc(docRef);
@@ -192,17 +200,6 @@ export const deleteUserFromDialogsAPI = async (userId,dialogId) => {
     const dialogsRef = doc(db, "dialogs", `${dialogId}`);
     const docSnapDialogs = await getDoc(dialogsRef);
 
-
-    if (docSnapUsers.exists()) {
-        docSnapUsers.data().dialogs.map(d => {
-            if(d !== dialogId ){
-                arrayDialogsUser.push(d)
-            }
-        })
-        await updateDoc(userRef, {
-            dialogs: arrayDialogsUser
-        });
-    }
     if(docSnapDialogs.exists()){
         docSnapDialogs.data().users.map(u => {
             if(u !== userId){
@@ -212,5 +209,31 @@ export const deleteUserFromDialogsAPI = async (userId,dialogId) => {
         await updateDoc(dialogsRef, {
             users: arrayUsers
         });
+
+        docSnapUsers.data().dialogs.map(d => {
+            if(d !== dialogId ){
+                arrayDialogsUser.push(d)
+            }
+        })
+        await updateDoc(userRef, {
+            dialogs: arrayDialogsUser
+        });
+
     }
+
+}
+export const dialogueSubscription = (params,dispatch,setCurrentDialogInfo,currentDialogInfo) => {
+    const unsub = onSnapshot(doc(db, "dialogs", `${params.id}`), (doc) => {
+        setCurrentDialogInfo({
+            info:{
+                admin: doc.data().admin,
+                dialogsName: doc.data().dialogsName,
+                privateDialogs: doc.data().privateDialogs,
+                users: doc.data().users,
+            },
+            id:params.id
+
+        })
+    });
+
 }
