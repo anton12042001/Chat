@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
+import React from 'react';
 import cl from './CurrentDialogsInfo.module.css'
-import DialogsPopapDeleteUserContainer from "../DialogsPopapDeleteUser/DialogsPopapDeleteUserContainer";
+import {useSelector} from "react-redux";
 
-const CurrentDialogsAction = ({setPopapDeleteUser,id, currentDialogs}) => {
+const CurrentDialogsAction = ({exitUserFromDialogs,setPopapDeleteUser,id, currentDialogs}) => {
 
 
 
@@ -16,7 +16,7 @@ const CurrentDialogsAction = ({setPopapDeleteUser,id, currentDialogs}) => {
 
 
 
-            <button>Покинуть беседу</button>
+            <button onClick={() => exitUserFromDialogs(id)} >Покинуть беседу</button>
         </div>
     );
 };

@@ -2,11 +2,11 @@ import React from 'react';
 import CurrentDialogsInfo from "./CurrentDialogsInfo";
 
 
-const CurrentDialogsInfoContainer = ({setPopapDeleteUser}) => {
+const CurrentDialogsInfoContainer = ({exitUserFromDialogs,setPopapDeleteUser}) => {
 
     return (
         <div>
-            <CurrentDialogsInfo setPopapDeleteUser={setPopapDeleteUser}/>
+            <CurrentDialogsInfo exitUserFromDialogs={exitUserFromDialogs} setPopapDeleteUser={setPopapDeleteUser}/>
         </div>
     );
 };

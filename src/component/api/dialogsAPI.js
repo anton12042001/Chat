@@ -222,7 +222,7 @@ export const deleteUserFromDialogsAPI = async (userId,dialogId) => {
     }
 
 }
-export const dialogueSubscription = (params,dispatch,setCurrentDialogInfo,currentDialogInfo) => {
+export const dialogueSubscription = (params,dispatch,setCurrentDialogInfo,) => {
     const unsub = onSnapshot(doc(db, "dialogs", `${params.id}`), (doc) => {
         setCurrentDialogInfo({
             info:{
@@ -235,5 +235,38 @@ export const dialogueSubscription = (params,dispatch,setCurrentDialogInfo,curren
 
         })
     });
+}
+export const exitFromDialog = async (id,params) => {
+    const arrayUsers = []
+    const arrayDialogs = []
+
+    const dialogsRef = doc(db, "dialogs", `${params.id}`);
+    const docSnapDialogs = await getDoc(dialogsRef);
+
+    const usersRef = doc(db, "users", `${id}`);
+    const docSnapUsers = await getDoc(usersRef);
+
+    if (docSnapDialogs.exists()) {
+        docSnapDialogs.data().users.map(u => {
+           if(u !== id){
+               arrayUsers.push(u)
+           }
+        })
+        await updateDoc(dialogsRef, {
+            users: arrayUsers
+        });
+    }
+    if(docSnapUsers.exists()){
+        docSnapUsers.data().dialogs.map(d => {
+            debugger
+            if(d !== params.id){
+                debugger
+                arrayDialogs.push(d)
+            }
+        })
+        await updateDoc(usersRef, {
+            dialogs: arrayDialogs
+        });
+    }
 
 }

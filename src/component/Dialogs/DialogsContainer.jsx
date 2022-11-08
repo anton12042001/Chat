@@ -8,19 +8,20 @@ import Loader from "../UI/Loader";
 import cl from "./Dialogs.module.css"
 import {
     addUserToDialogsAPI,
-    deleteUserFromDialogsAPI, dialogueSubscription, getUserInfoCurrentDialogAPI,
+    deleteUserFromDialogsAPI,
+    dialogueSubscription, exitFromDialog,
+    getUserInfoCurrentDialogAPI,
     loadInitialInfoDialogsAPI,
     loadInitialMessagesAPI
 } from "../api/dialogsAPI";
-import {
-    removeCurrentDialogs,
-    removeCurrentDialogsUserInfo,
-    setCurrentDialogs, setCurrentDialogsUserInfo
-} from "../../reduxToolkit/slices/showDialogs";
+import {removeDialogsForShow, setCurrentDialogs, setDialogsForShow} from "../../reduxToolkit/slices/showDialogs";
+import {removeDialogs, setDialogs} from "../../reduxToolkit/slices/dialogsIdSlice";
 
 
 const DialogsContainer = () => {
     const navigate = useNavigate()
+    const {dialogs} = useSelector(state => state.dialogs)
+    const {dialogsForShow} = useSelector(state => state.showDialogs)
     const params = useParams()
     const {id, displayName, photoURL, email} = useSelector(state => state.user)
     const dispatch = useDispatch()
@@ -40,6 +41,7 @@ const DialogsContainer = () => {
         },
         id:null
     })
+
 
 
 
@@ -73,18 +75,34 @@ const DialogsContainer = () => {
     const sendMessage = async (body) => {
         await setMessagesAPI(params, body, photoURL, displayName, id)
     }
-//todo сделать удаление юзера
     const deleteUserFromDialogs = (userId,dialogId) => {
         deleteUserFromDialogsAPI(userId,dialogId)
-            .then(() => {
-
-            })
-        debugger
     }
-//todo сделать удаление юзера
 
     const getUserInfoCurrentDialog = (users) => {
         getUserInfoCurrentDialogAPI(users,dispatch)
+    }
+
+    const exitUserFromDialogs = (id) => {
+        const dialogsId = []
+        const dialogsIdInfo = [...dialogsForShow]
+        exitFromDialog(id,params)
+            .then(() => {
+                dialogs.map(d => {
+                    if(d !== params.id){
+                        dialogsId.push(d)
+                    }
+                })
+                dispatch(removeDialogs())
+                dispatch(setDialogs(dialogsId))
+                dispatch(removeDialogsForShow())
+                dialogsIdInfo.map(d => {
+                   if(d.id !== params.id){
+                       dispatch(setDialogsForShow(d))
+                   }
+                })
+                navigate('/home')
+            })
     }
 
 
@@ -101,6 +119,7 @@ const DialogsContainer = () => {
     return (
         <div className={cl.dialogsContainer}>
             <Dialogs
+                exitUserFromDialogs={exitUserFromDialogs}
                 getUserInfoCurrentDialog={getUserInfoCurrentDialog}
                 deleteUserFromDialogs={deleteUserFromDialogs}
                 privateDialog={privateDialog}

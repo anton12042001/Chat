@@ -13,7 +13,7 @@ const DialogsPopapDeleteUser = ({deleteUserFromDialogParams}) => {
             <div className={cl.deleteUser}>
                 {currentDialogsUserInfo.map(u =>
                     <DialogsPopapDeleteUserList deleteUserFromDialogParams={deleteUserFromDialogParams}
-                                                id={u.id} displayName={u.displayName} key={u.id} />)}
+                                                idUser={u.id} displayName={u.displayName} key={u.id} />)}
             </div>
         </div>
     );

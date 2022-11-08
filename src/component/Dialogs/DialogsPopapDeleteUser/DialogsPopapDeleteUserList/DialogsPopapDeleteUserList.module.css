@@ -14,3 +14,11 @@
     padding: 0 15px 0 15px ;
     background: #b7b5b5;
 }
+.containerItems{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+.itemsAdmin{
+    color: #969494;
+}

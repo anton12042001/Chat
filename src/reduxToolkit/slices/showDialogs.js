@@ -22,6 +22,9 @@ const showDialogs = createSlice({
         setCurrentDialogsUserInfo(state,action){
             state.currentDialogsUserInfo.push(action.payload)
         },
+        removeDialogsForShow(state,action){
+          state.dialogsForShow = []
+        },
         removeCurrentDialogs(state){
             state.currentDialogs = null
         },
@@ -35,6 +38,7 @@ const showDialogs = createSlice({
         }
     },
 })
-export const {removeDialogsList, setDialogsForShow,setCurrentDialogs,setCurrentDialogsUserInfo,removeCurrentDialogs,removeCurrentDialogsUserInfo} = showDialogs.actions
+export const {removeDialogsList, setDialogsForShow,setCurrentDialogs,
+    setCurrentDialogsUserInfo,removeCurrentDialogs,removeCurrentDialogsUserInfo,removeDialogsForShow} = showDialogs.actions
 
 export default showDialogs.reducer

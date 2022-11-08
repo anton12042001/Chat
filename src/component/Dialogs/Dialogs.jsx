@@ -10,7 +10,7 @@ import CurrentDialogsInfoContainer from "./CurrentDialogsInfo/CurrentDialogsInfo
 import DialogsPopapDeleteUserContainer from "./DialogsPopapDeleteUser/DialogsPopapDeleteUserContainer";
 
 
-const Dialogs = ({getUserInfoCurrentDialog,deleteUserFromDialogs, privateDialog, sendMessage,
+const Dialogs = ({exitUserFromDialogs,getUserInfoCurrentDialog,deleteUserFromDialogs, privateDialog, sendMessage,
                      messages, loading, lastMessages, visiblePopapAddUser, visiblePopap, setVisiblePopap, addUserToDialogs, userFound, userAdded}) => {
     const {id} = useSelector(state => state.user)
     const params = useParams()
@@ -77,7 +77,7 @@ const Dialogs = ({getUserInfoCurrentDialog,deleteUserFromDialogs, privateDialog,
 
     return (
         <div className={cl.container}>
-            <div className={cl.dialogsInfo}><CurrentDialogsInfoContainer setPopapDeleteUser={setPopapDeleteUser}/></div>
+            <div className={cl.dialogsInfo}><CurrentDialogsInfoContainer exitUserFromDialogs={exitUserFromDialogs} setPopapDeleteUser={setPopapDeleteUser}/></div>
             <div ref={windowHeghtRef}>
                 <div className={cl.lastElement} ref={lastElement}></div>
                 {(messages.length === 0) && <div className={cl.noMessages}>В этом диалоге нет сообщений</div>}
