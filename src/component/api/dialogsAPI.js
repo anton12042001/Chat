@@ -12,6 +12,8 @@ import {
     setCurrentDialogs,
     setCurrentDialogsUserInfo
 } from "../../reduxToolkit/slices/showDialogs";
+import {dialogsAPIUtils} from "./dialogsAPIUtils";
+import {getDisplayNameFromMessages} from "./getDisplayNameFromMessages";
 
 
 const app = initializeApp(firebaseConfig);
@@ -93,16 +95,10 @@ export const loadInitialMessagesAPI = (params, dispatch, setLoading) => {
     const unsubscribe = onSnapshot(q, async (querySnapshot) => {
         let dialogs = []
         querySnapshot.forEach((doc) => {
-            const dateId = doc.data().createdAt.seconds + doc.data().createdAt.nanoseconds
-            let midleElement = {
-                displayName: doc.data().displayName,
-                photoURL: doc.data().photoURL,
-                text: doc.data().text,
-                uid: doc.data().uid,
-                createdAt: new Date(doc.data().createdAt.seconds * 1000).toLocaleString(),
-                idMessages: dateId
-            }
-            dialogs.push(midleElement)
+            const userId = doc.data().uid
+            // getDisplayNameFromMessages(userId)
+            dialogsAPIUtils(doc,dialogs)
+
         });
         dispatch(setMessages(dialogs.reverse()))
         const lastMessages = querySnapshot.docs[querySnapshot.docs.length - 1];
@@ -121,6 +117,7 @@ export const loadMoreMessagesAPI = (params, lastMessages, dialogs, dispatch) => 
         startAfter(lastMessages))
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
         querySnapshot.forEach((doc) => {
+
             const dateId = doc.data().createdAt.seconds + doc.data().createdAt.nanoseconds
             let midleElement = {
                 displayName: doc.data().displayName,
