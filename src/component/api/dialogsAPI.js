@@ -13,7 +13,6 @@ import {
     setCurrentDialogsUserInfo
 } from "../../reduxToolkit/slices/showDialogs";
 import {dialogsAPIUtils} from "./dialogsAPIUtils";
-import {getDisplayNameFromMessages} from "./getDisplayNameFromMessages";
 
 
 const app = initializeApp(firebaseConfig);
@@ -93,13 +92,20 @@ export const loadInitialInfoDialogsAPI = async (params,setPrivateDialog) => {
 export const loadInitialMessagesAPI = (params, dispatch, setLoading) => {
     const q = query(collection(db, `dialogs/${params.id}/messages`), limit(30), orderBy('createdAt', "desc"));
     const unsubscribe = onSnapshot(q, async (querySnapshot) => {
-        let dialogs = []
+        const dialogs = []
+        const messagesItem = []
         querySnapshot.forEach((doc) => {
-            const userId = doc.data().uid
-            // getDisplayNameFromMessages(userId)
-            dialogsAPIUtils(doc,dialogs)
+            const docs = doc.data()
+
+            dialogsAPIUtils(docs)
+                .then((d) => {
+                    messagesItem.push(d)
+                    console.log(messagesItem.reverse())
+                    console.log(d)
+                })
 
         });
+        console.log(dialogs)
         dispatch(setMessages(dialogs.reverse()))
         const lastMessages = querySnapshot.docs[querySnapshot.docs.length - 1];
         dispatch(setLastMessages(lastMessages))

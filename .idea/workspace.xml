@@ -40,7 +40,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../ReactTestYoutube" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -127,7 +127,8 @@
       <workItem from="1667627619743" duration="4000" />
       <workItem from="1667697277592" duration="10838000" />
       <workItem from="1667782583727" duration="8662000" />
-      <workItem from="1667869250557" duration="10516000" />
+      <workItem from="1667869250557" duration="10657000" />
+      <workItem from="1667955588692" duration="8891000" />
     </task>
     <servers />
   </component>
