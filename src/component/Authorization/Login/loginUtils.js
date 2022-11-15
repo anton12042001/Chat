@@ -1,5 +1,5 @@
 import {doc, getDoc, getFirestore} from "firebase/firestore";
-import {setDocumentAPI, updateDocumentAPI, updateDocumentDialogsAPI} from "../../api/firestoreDocumentAPI";
+import {setDocumentAPI, updateDocumentAPI, updateDocumentDialogsAPI} from "../../../api/firestoreDocumentAPI";
 
 import {initializeApp} from "firebase/app";
 import {firebaseConfig} from "../../../firebase";

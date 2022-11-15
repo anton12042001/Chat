@@ -5,9 +5,10 @@ import DialogsMessages from "./DialogsMessages/DialogsMessages";
 import {useDispatch, useSelector} from "react-redux";
 import {useParams} from "react-router-dom";
 import DialogsAddUserPopap from "./DialogsAddUserPopap/DialogsAddUserPopap";
-import {loadMoreMessagesAPI} from "../api/dialogsAPI";
+import {loadMoreMessagesAPI} from "../../api/dialogsAPI";
 import CurrentDialogsInfoContainer from "./CurrentDialogsInfo/CurrentDialogsInfoContainer";
 import DialogsPopapDeleteUserContainer from "./DialogsPopapDeleteUser/DialogsPopapDeleteUserContainer";
+import Loader from "../UI/Loader";
 
 
 const Dialogs = ({exitUserFromDialogs,getUserInfoCurrentDialog,deleteUserFromDialogs, privateDialog, sendMessage,
@@ -20,7 +21,7 @@ const Dialogs = ({exitUserFromDialogs,getUserInfoCurrentDialog,deleteUserFromDia
     const windowHeghtRef = useRef(null)
     const lastElement = useRef(null)
     const [popapDeleteUser, setPopapDeleteUser] = useState(false)
-
+    const {currentDialogs,currentDialogsUserInfo } = useSelector(state => state.showDialogs)
     let dialogs = []
 
 
@@ -71,9 +72,12 @@ const Dialogs = ({exitUserFromDialogs,getUserInfoCurrentDialog,deleteUserFromDia
     }
 
     const loadMoreMessages = () => {
-        loadMoreMessagesAPI(params, lastMessages, dialogs, dispatch)
+        loadMoreMessagesAPI(params, lastMessages, dialogs, dispatch,currentDialogsUserInfo)
     }
 
+    if(!currentDialogs){
+        return <Loader/>
+    }
 
     return (
         <div className={cl.container}>

@@ -1,7 +1,7 @@
 import React from 'react';
 import ChangeFullName from "./ChangeFullName";
 import cl from './ChangeFullName.module.css'
-import {changeFullNameAPI} from "../../api/personalDataAPI";
+import {changeFullNameAPI} from "../../../api/personalDataAPI";
 import {useDispatch} from "react-redux";
 import {changeNameUsers} from "../../../reduxToolkit/slices/userSlice";
 

@@ -4,7 +4,7 @@ import {createUserWithEmailAndPassword, getAuth, updateProfile} from "firebase/a
 import {useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import cl from './Register.module.css'
-import {sendMessagesAPI} from "../../api/authAPI";
+import {sendMessagesAPI} from "../../../api/authAPI";
 
 const RegisterContainer = () => {
     const {email} = useSelector(state => state.user)

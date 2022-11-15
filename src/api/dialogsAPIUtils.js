@@ -1,8 +1,9 @@
 import {doc, getDoc, getFirestore} from "firebase/firestore";
 import {initializeApp} from "firebase/app";
-import {firebaseConfig} from "../../firebase";
+import {firebaseConfig} from "../firebase";
+import {additionalMessages} from "../reduxToolkit/slices/messagesSlice";
 
-export const dialogsAPIUtils = async (docs) => {
+export const dialogsAPIUtils = async (docs,) => {
 
 
     const app = initializeApp(firebaseConfig);

@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import EmailVerification from "./EmailVerification";
-import {sendMessagesAPI} from "../api/authAPI";
+import {sendMessagesAPI} from "../../api/authAPI";
 
 const EmailVerificationContainer = () => {
     const [sendMessageToMail, setSendMessageToMail] = useState(false)

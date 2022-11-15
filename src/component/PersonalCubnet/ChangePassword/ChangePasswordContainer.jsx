@@ -4,7 +4,7 @@ import {useSelector} from "react-redux";
 import {getAuth, sendPasswordResetEmail} from "firebase/auth";
 import cl from "../ChangeEmail/ChangeEmail.module.css";
 import ChangePopapForm from "../ChangePopapForm/ChangePopapForm";
-import {reAuthAPI} from "../../api/authAPI";
+import {reAuthAPI} from "../../../api/authAPI";
 
 const ChangePasswordContainer = () => {
 

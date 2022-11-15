@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {useNavigate, useParams} from "react-router-dom"
 import Dialogs from "./Dialogs";
 import {useDispatch, useSelector} from "react-redux";
-import {setMessagesAPI} from "../api/messagesAPI";
+import {setMessagesAPI} from "../../api/messagesAPI";
 import {removeMessages} from "../../reduxToolkit/slices/messagesSlice";
 import Loader from "../UI/Loader";
 import cl from "./Dialogs.module.css"
@@ -13,7 +13,7 @@ import {
     getUserInfoCurrentDialogAPI,
     loadInitialInfoDialogsAPI,
     loadInitialMessagesAPI
-} from "../api/dialogsAPI";
+} from "../../api/dialogsAPI";
 import {removeDialogsForShow, setCurrentDialogs, setDialogsForShow} from "../../reduxToolkit/slices/showDialogs";
 import {removeDialogs, setDialogs} from "../../reduxToolkit/slices/dialogsIdSlice";
 
@@ -32,6 +32,7 @@ const DialogsContainer = () => {
     const [userFound, setUserFound] = useState(false)
     const [userAdded,setUserAdded] = useState(false)
     const [privateDialog,setPrivateDialog] = useState(false)
+    const {currentDialogs } = useSelector(state => state.showDialogs)
     const [currentDialogInfo,setCurrentDialogInfo] = useState({
         info:{
             admin: null ,
@@ -41,6 +42,7 @@ const DialogsContainer = () => {
         },
         id:null
     })
+
 
 
 
@@ -56,6 +58,7 @@ const DialogsContainer = () => {
 
 
     useEffect(() => {
+        getUsersToDialogs(currentDialogs,dispatch)
         dispatch(removeMessages())
         loadInitialMessagesAPI(params,dispatch,setLoading)
         loadInitialInfoDialogsAPI(params,setPrivateDialog)
@@ -67,6 +70,21 @@ const DialogsContainer = () => {
         setUserAdded(false)
         setVisiblePopap(true)
     }
+
+
+
+
+
+    const getUsersToDialogs = async () => {
+        const users = currentDialogs.info.users
+        console.log(users)
+        await getUserInfoCurrentDialogAPI(users, dispatch)
+    }
+
+
+
+
+
 
     const addUserToDialogs =  (params, data) => {
         addUserToDialogsAPI(params,data,setUserFound,setUserAdded)
@@ -113,6 +131,10 @@ const DialogsContainer = () => {
     }
     if (!email) {
         navigate('/authorization')
+    }
+    if(!currentDialogs ){
+        console.log("его не было")
+        return <Loader/>
     }
 
 

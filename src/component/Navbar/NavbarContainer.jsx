@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import Navbar from "./Navbar";
 import {useDispatch, useSelector} from "react-redux";
-import {createDialogAPI, NavbarDialogsObserverAPI} from "../api/dialogsAPI";
+import {createDialogAPI, NavbarDialogsObserverAPI} from "../../api/dialogsAPI";
 
 const NavbarContainer = () => {
 

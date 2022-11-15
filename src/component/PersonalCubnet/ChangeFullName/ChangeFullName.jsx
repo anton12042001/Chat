@@ -15,7 +15,7 @@ const ChangeFullName = ({changeName,displayName}) => {
     return (
         <div>
             <div>Ваше имя: {(editName ? <ChangeFullNameForm changeFullNameUsers={changeFullNameUsers} setEditName={setEditName} /> : <span>{displayName}</span>)}</div>
-            {(!editName) && <button onClick={() => setEditName(true)} >Сменить имя</button>}
+            <strong>Смена имени в разработке...</strong>
         </div>
     );
 };

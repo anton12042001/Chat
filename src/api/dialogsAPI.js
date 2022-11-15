@@ -1,18 +1,22 @@
 import {
-    addDoc, collection, doc, getDoc, getFirestore, limit,
-    onSnapshot, orderBy, query, startAfter, updateDoc
+    addDoc,
+    collection,
+    doc,
+    getDoc,
+    getFirestore,
+    limit,
+    onSnapshot,
+    orderBy,
+    query,
+    startAfter,
+    updateDoc
 } from "firebase/firestore";
 import {initializeApp} from "firebase/app";
-import {firebaseConfig} from "../../firebase";
-import {removeDialogs, setDialogs} from "../../reduxToolkit/slices/dialogsIdSlice";
-import {NavbarShowDialogs} from "../Home/NavbarShowDialogs";
-import {additionalMessages, setLastMessages, setMessages} from "../../reduxToolkit/slices/messagesSlice";
-import {
-    removeCurrentDialogsUserInfo,
-    setCurrentDialogs,
-    setCurrentDialogsUserInfo
-} from "../../reduxToolkit/slices/showDialogs";
-import {dialogsAPIUtils} from "./dialogsAPIUtils";
+import {firebaseConfig} from "../firebase";
+import {removeDialogs, setDialogs} from "../reduxToolkit/slices/dialogsIdSlice";
+import {NavbarShowDialogs} from "../component/Home/NavbarShowDialogs";
+import {additionalMessages, setLastMessages, setMessages} from "../reduxToolkit/slices/messagesSlice";
+import {removeCurrentDialogsUserInfo, setCurrentDialogsUserInfo} from "../reduxToolkit/slices/showDialogs";
 
 
 const app = initializeApp(firebaseConfig);
@@ -88,42 +92,42 @@ export const loadInitialInfoDialogsAPI = async (params,setPrivateDialog) => {
 }
 
 
-//TODO доработать отрисовку актуального имени пользователя, если он сменил имя
+
 export const loadInitialMessagesAPI = (params, dispatch, setLoading) => {
     const q = query(collection(db, `dialogs/${params.id}/messages`), limit(30), orderBy('createdAt', "desc"));
     const unsubscribe = onSnapshot(q, async (querySnapshot) => {
         const dialogs = []
         const messagesItem = []
         querySnapshot.forEach((doc) => {
-            const docs = doc.data()
 
-            dialogsAPIUtils(docs)
-                .then((d) => {
-                    messagesItem.push(d)
-                    console.log(messagesItem.reverse())
-                    console.log(d)
-                })
 
+            const dateId = doc.data().createdAt.seconds + doc.data().createdAt.nanoseconds
+            let midleElement = {
+                displayName: doc.data().displayName,
+                photoURL: doc.data().photoURL,
+                text: doc.data().text,
+                uid: doc.data().uid,
+                createdAt: new Date(doc.data().createdAt.seconds * 1000).toLocaleString(),
+                idMessages: dateId
+
+            }
+            dialogs.push(midleElement)
         });
-        console.log(dialogs)
+        dispatch(setMessages(messagesItem))
         dispatch(setMessages(dialogs.reverse()))
         const lastMessages = querySnapshot.docs[querySnapshot.docs.length - 1];
         dispatch(setLastMessages(lastMessages))
         setLoading(false)
     });
 }
-//TODO доработать отрисовку актуального имени пользователя, если он сменил имя
 
-
-//TODO доработать отрисовку актуального имени пользователя, если он сменил имя
-export const loadMoreMessagesAPI = (params, lastMessages, dialogs, dispatch) => {
+export const loadMoreMessagesAPI = (params, lastMessages, dialogs, dispatch,currentDialogsUserInfo) => {
     const q = query(collection(db, `dialogs/${params.id}/messages`),
         limit(30),
         orderBy('createdAt', "desc"),
         startAfter(lastMessages))
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
         querySnapshot.forEach((doc) => {
-
             const dateId = doc.data().createdAt.seconds + doc.data().createdAt.nanoseconds
             let midleElement = {
                 displayName: doc.data().displayName,
@@ -141,7 +145,7 @@ export const loadMoreMessagesAPI = (params, lastMessages, dialogs, dispatch) => 
         dispatch(setLastMessages(lastMessages))
     });
 }
-//TODO доработать отрисовку актуального имени пользователя, если он сменил имя
+
 
 
 export const addUserToDialogsAPI = async (params, data, setUserFound, setUserAdded) => { //функция по добавлению пользователя в беседу.

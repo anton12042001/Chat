@@ -4,7 +4,7 @@ import cl from './ChangeEmail.module.css'
 import {useNavigate} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {getAuth,updateEmail} from "firebase/auth";
-import {reAuthAPI, sendMessagesAPI} from "../../api/authAPI";
+import {reAuthAPI, sendMessagesAPI} from "../../../api/authAPI";
 import {changeEmailUsers} from "../../../reduxToolkit/slices/userSlice";
 import ChangePopapForm from "../ChangePopapForm/ChangePopapForm";
 

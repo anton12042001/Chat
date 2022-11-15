@@ -1,6 +1,6 @@
 import React from 'react';
 import Login from "./Login";
-import {loginAPI, sendMessagesAPI} from "../../api/authAPI";
+import {loginAPI, sendMessagesAPI} from "../../../api/authAPI";
 import {setUser} from "../../../reduxToolkit/slices/userSlice";
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";

@@ -1,7 +1,7 @@
 import {getAuth, updateProfile} from "firebase/auth";
 import {doc, getFirestore, updateDoc} from "firebase/firestore";
 import {initializeApp} from "firebase/app";
-import {firebaseConfig} from "../../firebase";
+import {firebaseConfig} from "../firebase";
 
 
 const auth = getAuth();
