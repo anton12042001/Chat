@@ -1,18 +1,25 @@
-.navbar{
-    padding: 15px 0 0 0;
-    background: bisque;
+.navbarContainer {
+
+    background: #FFFFFF;
     position: fixed;
-    top: 50px;
+    top: 0px;
     left: 0;
-    width: 316px;
+    max-width: 365px;
+    width: 100%;
     max-height: 100%;
     height: 100%;
+    grid-area: n;
+    border: 1px solid black;
 
 }
-.dialogsList{
+.navbar {
+
+}
+.dialogsList {
     margin: 15px 0 0 0;
 }
-.popapDialogsForm{
+
+.popapDialogsForm {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -21,12 +28,67 @@
     max-height: 100%;
     width: 100%;
     height: 100%;
-    background: rgba(255, 255, 255, 0.35);;
+    background: rgba(255, 255, 255, 0.35);
     position: absolute;
     top: 0;
     left: 0;
     z-index: 100;
 }
-.buttonHome{
+.buttonHome {
     margin: 0 0 25px 0;
+}
+.settingUser{
+    margin: 0 0 8px 0;
+    display: flex;
+    border-bottom: 1px solid #b4b2b2;
+    max-height: 56px;
+    align-items: center;
+    height: 100%;
+    justify-content: space-between;
+    padding: 0 15px;
+}
+.popapCurrentUserContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    z-index: 50;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(255, 255, 255, 0.5);
+}
+.itemDialogs{
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #b4b2b2;
+    width: 100%;
+    height: 42px;
+}
+.itemDialogs button{
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: none;
+}
+.itemDialogsActive button{
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: #b4b2b2;
+}
+.itemDialogsActive {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #b4b2b2;
+    width: 100%;
+    height: 42px;
+}
+.appName{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border: 1px solid black;
 }

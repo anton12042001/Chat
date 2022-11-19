@@ -1,7 +1,10 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import Navbar from "./Navbar";
 import {useDispatch, useSelector} from "react-redux";
 import {createDialogAPI, NavbarDialogsObserverAPI} from "../../api/dialogsAPI";
+import cl from './Navbar.module.css'
+import PopapCurrentUser from "../PopapCurrentUser/PopapCurrentUser";
+import {useNavigate} from "react-router-dom";
 
 const NavbarContainer = () => {
 
@@ -9,6 +12,8 @@ const NavbarContainer = () => {
     const {dialogs} = useSelector(state => state.dialogs)
     const {dialogsForShow} = useSelector(state => state.showDialogs)
     const dispatch = useDispatch()
+    const [showSetting, setShowSetting] = useState(false)
+    const navigate = useNavigate()
 
     useEffect(() => {
         NavbarDialogsObserverAPI(dialogs,id,dispatch,dialogsForShow)
@@ -24,7 +29,14 @@ const NavbarContainer = () => {
 
 
     return (
-        <div>
+        <div className={cl.navbarContainer} >
+            <div className={cl.settingUser} >
+                <div>
+                    <button onClick={() => setShowSetting(true)}>Настройки</button>
+                </div>
+                <div className={cl.appName} onClick={() => navigate('/home')}>АнтонОнлайн</div>
+                {(showSetting) && <div onClick={() => setShowSetting(false)} className={cl.popapCurrentUserContainer} ><PopapCurrentUser/></div>}
+            </div>
             <Navbar createNewDialogs={createNewDialogs}/>
         </div>
     );

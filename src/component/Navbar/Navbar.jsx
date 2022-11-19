@@ -21,9 +21,7 @@ const Navbar = (props) => {
         <div>
             <div className={cl.navbar}>
                 <div className={cl.buttonHome} >
-                    <button onClick={() => navigate('/home')}>Главная</button>
                 </div>
-                <div>Список диалогов</div>
                 <button onClick={() => setNewDialogs(true)}>Создать новый диалог</button>
                 <div className={cl.dialogsList} >
                     {dialogsForShow.map(d =>

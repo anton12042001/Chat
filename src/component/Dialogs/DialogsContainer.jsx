@@ -55,8 +55,6 @@ const DialogsContainer = () => {
         dispatch(setCurrentDialogs(currentDialogInfo))
     },[currentDialogInfo])
 
-
-
     useEffect(() => {
         getUsersToDialogs(currentDialogs,dispatch)
         dispatch(removeMessages())
@@ -71,20 +69,11 @@ const DialogsContainer = () => {
         setVisiblePopap(true)
     }
 
-
-
-
-
     const getUsersToDialogs = async () => {
         const users = currentDialogs.info.users
         console.log(users)
         await getUserInfoCurrentDialogAPI(users, dispatch)
     }
-
-
-
-
-
 
     const addUserToDialogs =  (params, data) => {
         addUserToDialogsAPI(params,data,setUserFound,setUserAdded)

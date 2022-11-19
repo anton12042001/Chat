@@ -21,9 +21,6 @@ const CurrentUser = () => {
         dispatch(removeMessages())
     }
 
-    const personalCubnet = () => {
-        navigate('/personalCubnet')
-    }
 
 
     const redirectToLogin = () => {
@@ -33,7 +30,6 @@ const CurrentUser = () => {
     return (
         <div  >
             {email ? <button onClick={Logout}>Logout {email}</button> : <button onClick={redirectToLogin} >Войти</button>}
-            {email && <div><button onClick={personalCubnet} >Личный кабинет</button></div>}
         </div>
     );
 };
