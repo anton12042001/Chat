@@ -229,7 +229,17 @@ export const deleteUserFromDialogsAPI = async (userId,dialogId) => {
     }
 
 }
-export const dialogueSubscription = (params,dispatch,setCurrentDialogInfo,) => {
+export const dialogsSubscription = (params,dispatch,setCurrentDialogInfo,) => {
+    setCurrentDialogInfo({
+        info:{
+            admin: null ,
+            dialogsName: null,
+            privateDialogs: null,
+            users: null,
+        },
+        id:null
+
+    })
     const unsub = onSnapshot(doc(db, "dialogs", `${params.id}`), (doc) => {
         setCurrentDialogInfo({
             info:{

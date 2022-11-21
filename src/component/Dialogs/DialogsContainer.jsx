@@ -9,7 +9,8 @@ import cl from "./Dialogs.module.css"
 import {
     addUserToDialogsAPI,
     deleteUserFromDialogsAPI,
-    dialogueSubscription, exitFromDialog,
+    dialogsSubscription,
+    exitFromDialog,
     getUserInfoCurrentDialogAPI,
     loadInitialInfoDialogsAPI,
     loadInitialMessagesAPI
@@ -47,9 +48,10 @@ const DialogsContainer = () => {
 
 
 
+
     useEffect(() => {
-        dialogueSubscription(params,dispatch,setCurrentDialogInfo,currentDialogInfo)
-    },[])
+        dialogsSubscription(params,dispatch,setCurrentDialogInfo,currentDialogInfo)
+    },[params])
 
     useEffect(() => {
         dispatch(setCurrentDialogs(currentDialogInfo))

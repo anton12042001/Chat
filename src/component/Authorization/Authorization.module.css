@@ -1,0 +1,32 @@
+.authorizationWrapper{
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 100%;
+    width: 100%;
+    height: 100%;
+    background: #2d3649;
+    /*background-image: url('/src/img/backgroundAuthorization.png');*/
+    /*background-repeat: repeat;*/
+}
+.authorizationContainer{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+.authIcon{
+    margin: 0 0 9px 0;
+}
+.authTitle{
+    font-weight: 400;
+    font-size: 64px;
+    line-height: 77px;
+    color: #FFFFFF;
+    margin: 0 0 63px 0;
+}

@@ -16,7 +16,6 @@ const showDialogs = createSlice({
             state.dialogsForShow.push(action.payload)
         },
         setCurrentDialogs(state,action){
-            debugger
             state.currentDialogs = action.payload
         },
         setCurrentDialogsUserInfo(state,action){
