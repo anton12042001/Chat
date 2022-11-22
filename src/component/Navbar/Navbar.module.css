@@ -8,19 +8,8 @@
     max-height: 100%;
     height: 100%;
     grid-area: n;
-    border: 1px solid black;
     border-radius: 50px 0 0 50px;
     margin: 0 0 0 80px;
-}
-.navigate {
-    border: 1px solid black;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background: #ECC263;
-    max-width: 510px;
-    width: 100%;
-    height: 100%;
 }
 .navbarWrapper{
 
@@ -70,30 +59,60 @@
     background: rgba(255, 255, 255, 0.5);
 }
 .itemDialogs{
+    cursor: pointer;
     display: flex;
     align-items: center;
-    border-bottom: 1px solid #b4b2b2;
+    border: 3px solid #F7F7F7;
+    min-width: 303px;
+    min-height: 70px;
     width: 100%;
-    height: 42px;
+    height: 100%;
+    border-radius: 20px;
+    margin: 0 0 20px 0;
 }
 .itemDialogs button{
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    color: #000000;
+    cursor: pointer;
+    min-width: 303px;
+    min-height: 70px;
     width: 100%;
     height: 100%;
     border: none;
     background: none;
+    text-align: left;
+    margin: 0 0 0 36px;
 }
 .itemDialogsActive button{
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    color: #000000;
+    cursor: pointer;
+    min-width: 303px;
+    min-height: 70px;
     width: 100%;
     height: 100%;
     border: none;
-    background: #b4b2b2;
+    background:none;
+    text-align: left;
+    margin: 0 0 0 36px;
 }
 .itemDialogsActive {
+    cursor: pointer;
     display: flex;
     align-items: center;
-    border-bottom: 1px solid #b4b2b2;
+    border: 3px solid #F7F7F7;
+    min-width: 303px;
+    min-height: 70px;
     width: 100%;
-    height: 42px;
+    height: 100%;
+    border-radius: 20px;
+    margin: 0 0 20px 0;
+    background: #F7F7F7;
+    box-shadow: 0px 0px 5px rgba(92, 54, 127, 0.1);
 }
 .appName{
     height: 100%;
@@ -102,41 +121,45 @@
     cursor: pointer;
     border: 1px solid black;
 }
-.homeActive{
-    max-height: 61px;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    margin: 178px 0 41px 7px;
-    border-radius: 50px 0 0 50px;
-    background: white;
-    padding: 0 0 0 12px;
+.navbarBlockDialogs{
+    margin: 90px 0 0 32px;
 }
-.home{
-    max-height: 61px;
-    height: 100%;
+.dialogueManagement{
     display: flex;
-    align-items: center;
-    margin: 178px 0 41px 7px;
-    border-radius: 50px 0 0 50px;
-    padding: 0 0 0 12px;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 658px;
+    max-width: 303px;
+    height: 100%;
 }
-.chatActive{
-    max-height: 61px;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    margin: 0px 0 0 7px;
-    border-radius: 50px 0 0 50px;
-    background: white;
-    padding: 0 0 0 12px;
+.titleBlockDialogs{
+    margin: 0 0 55px 0;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 29px;
+    color: #2B3445;
 }
-.chat{
-    max-height: 61px;
-    height: 100%;
+
+
+
+.createNewDialogsButtonBody{
     display: flex;
     align-items: center;
-    margin: 0px 0 0 7px;
-    border-radius: 50px 0 0 50px;
-    padding: 0 0 0 12px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    color: #2B3445;
+}
+.createNewDialogsButtonBody span{
+    margin: 0 18px 0 0;
+}
+.createNewDialogsButton{
+    display: flex;
+    justify-content: flex-end;
+}
+.createNewDialogsButton button{
+    background: none;
+    border: none;
 }

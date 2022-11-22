@@ -1,0 +1,67 @@
+.navigate {
+    border: 1px solid black;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #ECC263;
+    max-width: 510px;
+    width: 100%;
+    height: 100%;
+}
+.homeActive{
+    max-height: 61px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    margin: 178px 0 41px 7px;
+    border-radius: 50px 0 0 50px;
+    background: white;
+    padding: 0 0 0 12px;
+}
+.home{
+    max-height: 61px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    margin: 178px 0 41px 7px;
+    border-radius: 50px 0 0 50px;
+    padding: 0 0 0 12px;
+}
+.chatActive{
+    max-height: 61px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    margin: 0px 0 362px 7px;
+    border-radius: 50px 0 0 50px;
+    background: white;
+    padding: 0 0 0 12px;
+}
+.chat{
+    max-height: 61px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    margin: 0px 0 362px 7px;
+    border-radius: 50px 0 0 50px;
+    padding: 0 0 0 12px;
+}
+.settingActive{
+    max-height: 61px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    margin: 0px 0 0 7px;
+    border-radius: 50px 0 0 50px;
+    background: white;
+    padding: 0 0 0 12px;
+}
+.setting{
+    max-height: 61px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    margin: 0px 0 0 7px;
+    border-radius: 50px 0 0 50px;
+    padding: 0 0 0 12px;
+}

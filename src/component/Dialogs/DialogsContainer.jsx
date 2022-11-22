@@ -46,9 +46,6 @@ const DialogsContainer = () => {
 
 
 
-
-
-
     useEffect(() => {
         dialogsSubscription(params,dispatch,setCurrentDialogInfo,currentDialogInfo)
     },[params])
@@ -113,8 +110,6 @@ const DialogsContainer = () => {
                 navigate('/home')
             })
     }
-
-
 
 
     if (loading || messages === null || messages === undefined) {

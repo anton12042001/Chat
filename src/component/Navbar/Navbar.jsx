@@ -1,40 +1,37 @@
-import React, {useState} from 'react';
+import React from 'react';
 import cl from './Navbar.module.css'
 import {useSelector} from "react-redux";
 import NavbarDialogsList from "./NavbarDialogsList";
-import {useNavigate} from "react-router-dom";
-import NewDialogsForm from "./NewDialogsForm/NewDialogsForm";
+import createDialogsIcon from '../../img/createNewDialogs/createNewDialogs.svg'
 
-const Navbar = (props) => {
+const Navbar = ({setNewDialogs}) => {
 
-    const [newDialogs,setNewDialogs] = useState(false)
-    const [privateDialogs,setPrivateDialogs] = useState(false)
+
     const {dialogsForShow} = useSelector(state => state.showDialogs)
-    const navigate = useNavigate()
 
-    const setNewDialogsDB = (data,privateDialogs) => {
-        props.createNewDialogs(data,privateDialogs)
-        setNewDialogs(false)
-    }
 
     return (
-        <div>
-            <div className={cl.navbar}>
-                <div className={cl.buttonHome} >
-                </div>
-                <button onClick={() => setNewDialogs(true)}>Создать новый диалог</button>
-                <div className={cl.dialogsList} >
+        <div className={cl.navbarBlockDialogs} >
+            <div className={cl.titleBlockDialogs} >Беседы</div>
+            <div className={cl.dialogueManagement}>
+                <div className={cl.dialogsList}>
                     {dialogsForShow.map(d =>
-                        <NavbarDialogsList dialogsName={d.info.dialogsName} id={d.id} key={d.id}  />
+                        <NavbarDialogsList dialogsName={d.info.dialogsName} id={d.id} key={d.id}/>
                     )}
                 </div>
+                <div className={cl.createNewDialogsButton} >
+                    <button onClick={() => setNewDialogs(true)}>
+                        <div className={cl.createNewDialogsButtonBody} >
+                            <span>Создать беседу</span>
+                            <img src={createDialogsIcon} alt=""/>
+                        </div>
+                    </button>
+                </div>
+
+
+
+
             </div>
-
-            {newDialogs &&
-                <div onClick={() => setNewDialogs(false)} className={cl.popapDialogsForm}>
-                    <NewDialogsForm setPrivateDialogs={setPrivateDialogs} privateDialogs={privateDialogs} setNewDialogsDB={setNewDialogsDB}/>
-                </div>}
-
         </div>
     );
 };

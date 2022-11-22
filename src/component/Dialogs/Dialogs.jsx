@@ -80,31 +80,33 @@ const Dialogs = ({exitUserFromDialogs,getUserInfoCurrentDialog,deleteUserFromDia
     }
 
     return (
-        <div className={cl.container}>
-            <div className={cl.dialogsInfo}><CurrentDialogsInfoContainer exitUserFromDialogs={exitUserFromDialogs} setPopapDeleteUser={setPopapDeleteUser}/></div>
-            <div ref={windowHeghtRef}>
-                <div className={cl.lastElement} ref={lastElement}></div>
-                {(messages.length === 0) && <div className={cl.noMessages}>В этом диалоге нет сообщений</div>}
-                {messages.map(m => <DialogsMessages displayName={m.displayName} text={m.text} uid={m.uid} id={id}
-                                                    photoURL={m.photoURL} key={m.idMessages} createdAt={m.createdAt}/>)}
-            </div>
-            <div className={cl.sendMessagesOrAddUser} ref={fieldRef}>
-                <DialogsSendMessageForm createMessage={createMessage}/>
-                <div className={cl.addUserToChat}>
-                    {!privateDialog && <button onClick={visiblePopapAddUser}>Добавить пользователя в чат</button>}
-                    {(visiblePopap) && <DialogsAddUserPopap
-                        userAdded={userAdded}
-                        userFound={userFound}
-                        addUserToDialogs={addUserToDialogs}
-                        setVisiblePopap={setVisiblePopap}/>}
+        <div className={cl.dialogsBackground} >
+            <div className={cl.container}>
+                {/*<div className={cl.dialogsInfo}><CurrentDialogsInfoContainer exitUserFromDialogs={exitUserFromDialogs} setPopapDeleteUser={setPopapDeleteUser}/></div>*/}
+                <div ref={windowHeghtRef}>
+                    <div className={cl.lastElement} ref={lastElement}></div>
+                    {(messages.length === 0) && <div className={cl.noMessages}>В этом диалоге нет сообщений</div>}
+                    {messages.map(m => <DialogsMessages displayName={m.displayName} text={m.text} uid={m.uid} id={id}
+                                                        photoURL={m.photoURL} key={m.idMessages} createdAt={m.createdAt}/>)}
                 </div>
-            </div>
-            {
-                (popapDeleteUser) && <div onClick={() => setPopapDeleteUser(false)} className={cl.popapDeleteUser}>
-                    <DialogsPopapDeleteUserContainer deleteUserFromDialogParams={deleteUserFromDialogParams} getUserInfoCurrentDialog={getUserInfoCurrentDialog} />
+                <div className={cl.sendMessagesOrAddUser} ref={fieldRef}>
+                    <DialogsSendMessageForm createMessage={createMessage}/>
+                    <div className={cl.addUserToChat}>
+                        {!privateDialog && <button onClick={visiblePopapAddUser}>Добавить пользователя в чат</button>}
+                        {(visiblePopap) && <DialogsAddUserPopap
+                            userAdded={userAdded}
+                            userFound={userFound}
+                            addUserToDialogs={addUserToDialogs}
+                            setVisiblePopap={setVisiblePopap}/>}
+                    </div>
                 </div>
+                {
+                    (popapDeleteUser) && <div onClick={() => setPopapDeleteUser(false)} className={cl.popapDeleteUser}>
+                        <DialogsPopapDeleteUserContainer deleteUserFromDialogParams={deleteUserFromDialogParams} getUserInfoCurrentDialog={getUserInfoCurrentDialog} />
+                    </div>
 
-            }
+                }
+            </div>
         </div>
     );
 };

@@ -15,7 +15,8 @@ const NavbarDialogsList = ({dialogsName, id}) => {
         <div className={(mouseOver) ? cl.itemDialogsActive : cl.itemDialogs} >
             <button onMouseOut={() => setMouseOver(false)}
                     onMouseOver={() => setMouseOver(true)}
-                    onClick={switchToDialog}>{dialogsName}</button>
+                    onClick={switchToDialog}>{dialogsName}
+            </button>
         </div>
     );
 };

@@ -35,12 +35,20 @@
     border: 1px solid red;
 }
 .container{
+    border: 1px solid black;
+    max-width: 730px;
+    width: 100%;
+    background: #F7F7F7;
+    border-radius: 30px;
+    margin: 0 0 0 192px;
+}
+.dialogsBackground{
+    background: #F7F7F7;
 }
 .lastElement{
     height: 20px;
 }
 .dialogsContainer{
-    z-index: 3;
     max-height: 100%;
     height: 100%;
     display: flex;
