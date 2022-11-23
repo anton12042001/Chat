@@ -10,40 +10,92 @@
 }
 
 .sendMessage {
-    width: 1050px;
-    margin: 0 0 0 50px;
+
+
 }
 .messagesElement{
+
+    position: relative;
     display: flex;
     flex-direction: column;
-    margin: 10px;
     min-width: 200px;
 }
+
+
+
+
 .myMessage {
-    padding: 0 0 15px 0;
-    align-self: flex-end;
-    height: 50px;
-    border: 1px dashed teal;
+    background: #ECC263;
+    align-self: flex-start;
+    color: #000000;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 27px;
+    border-radius: 20px;
+    margin: 0 0 60px 0;
+    max-width: 830px;
+    min-height: 44px;
+}
+.messagesUserInfo{
+    display: flex;
+    align-items: center;
+position: absolute;
+    top: -35px;
+    min-width: 100%;
+    gap: 10px;
+}
+.messagesBody{
+    word-break: break-all;
+    border-radius: 20px;
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    min-width: 141px;
+    min-height: 44px;
+    max-width: 830px;
 
 }
-.userMessage {
-    padding: 0 0 15px 0;
+.messagesInfoName{
+    font-style: normal;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 27px;
+    color: #000000;
+}
 
-    width: fit-content;
+
+
+
+
+
+.userMessage {
+    background: #FFFBF8;
     align-self: flex-start;
-    height: 50px;
-    border: 1px solid red;
+    color: #000000;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 27px;
+    border-radius: 20px;
+    margin: 0 0 60px 0;
+    max-width: 830px;
+    min-height: 44px;
 }
 .container{
     border: 1px solid black;
-    max-width: 730px;
+    max-width: 1040px;
     width: 100%;
-    background: #F7F7F7;
+
     border-radius: 30px;
     margin: 0 0 0 192px;
+
 }
 .dialogsBackground{
-    background: #F7F7F7;
+    background-image: url('/src/img/backgroundDialogs.png');
+    background-size: 500px;
+    background-repeat: repeat;
+
 }
 .lastElement{
     height: 20px;
@@ -54,6 +106,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+
 }
 .noMessages{
     display: flex;
@@ -63,16 +116,20 @@
 }
 
 .textArea{
-    width: 1500px;
-    height: 50px;
+    height: 56px;
+    max-width: 664px;
+    width: 100%;
+
 }
 .addUserToChat{
     margin:  15px 0 30px 50px;
 }
 .createdAt{
-    font-size: 12px;
-    color: slategrey;
-    padding: 0 0 15px 0;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 27px;
+    color: rgba(0, 0, 0, 0.5);
 }
 .dialogsInfo{
     border: 1px solid black;
@@ -100,4 +157,8 @@
 .deleteUser{
     margin: 35px 0 0 0px;
     height: 100%;
+}
+.textareaContainer textarea{
+    max-height: 56px;
+    max-width: 664px;
 }

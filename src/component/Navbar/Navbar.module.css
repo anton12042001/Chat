@@ -83,7 +83,7 @@
     border: none;
     background: none;
     text-align: left;
-    margin: 0 0 0 36px;
+    padding: 0 0 0 36px;
 }
 .itemDialogsActive button{
     font-weight: 400;
@@ -98,7 +98,7 @@
     border: none;
     background:none;
     text-align: left;
-    margin: 0 0 0 36px;
+    padding: 0 0 0 36px;
 }
 .itemDialogsActive {
     cursor: pointer;

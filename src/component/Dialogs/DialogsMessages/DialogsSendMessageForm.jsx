@@ -18,7 +18,7 @@ const DialogsSendMessageForm = (props) => {
 
     return (
         <form className={cl.sendMessage} onSubmit={handleSubmit(onSubmit)}>
-            <div>
+            <div className={cl.textareaContainer} >
                 <textarea className={cl.textArea}  {...register("body")}/>
             </div>
             <button type={"submit"}>Отправить сообщение</button>
