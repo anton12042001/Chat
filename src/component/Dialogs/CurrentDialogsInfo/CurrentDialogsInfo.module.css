@@ -1,19 +1,71 @@
-.currentDialogsContainer{
+.currentDialogsContainer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 50px;
-
-    width: 785px;
-    margin: 0 0 0 750px;
+    height: 55px;
+    padding: 0 45px;
 }
-.dialogsAction{
-    border: 1px solid black;
-    width: 250px;
-    height: 400px;
+
+.dialogsAction {
+    padding: 22px 30px;
+    width: 317px;
+    height: 329px;
     position: absolute;
     top: 35px;
     right: 115px;
     z-index: 100;
-    background: white;
+    background: #FFFFFF;
+    border-radius: 30px;
+    box-shadow: 0px 0px 12px rgba(83, 83, 89, 0.12);
+}
+
+.dialogsName {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    color: #000000;
+    display: flex;
+    align-items: center;
+}
+
+.borderHeaderDialogs {
+    background: #FFFBF8;
+    border-bottom: 1px solid rgba(236, 194, 99, 0.5);
+    max-width: 990px;
+    margin: 0 auto;
+}
+
+.currentDialogsHeaderBody {
+    background: #FFFBF8;
+    padding: 0 0 10px 0;
+}
+
+.moreItem {
+    border: 2px solid #ECC263;
+    border-radius: 50%;
+}
+
+.moreItems {
+    gap: 5px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.countUsers{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 19px;
+    color: #000000;
+    margin: 0 0 5px 0;
+}
+.roleUser{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 19px;
+    color: #000000;
+    margin: 0 0 30px 0;
 }

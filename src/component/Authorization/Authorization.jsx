@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import RegisterContainer from "./Register/RegisterContainer";
 import LoginContainer from "./Login/LoginContainer";
 import cl from './Authorization.module.css'
-import iconAuth from '../../img/iconAuthorization.svg'
+import iconAuth from '../../img/auth/iconAuthorization.svg'
 
 const Authorization = () => {
     const [isReguster, setIsRegister] = useState(null)

@@ -40,7 +40,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../ReactTestYoutube" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -55,10 +55,11 @@
       <recent name="C:\Users\ahtoh\WebstormProjects\app\Chat\src\component\PersonalCubnet\ChangeEmail" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\ahtoh\WebstormProjects\app\Chat\src\img\dialogs" />
+      <recent name="C:\Users\ahtoh\WebstormProjects\app\Chat\src\img\auth" />
       <recent name="C:\Users\ahtoh\WebstormProjects\app\Chat\src" />
       <recent name="C:\Users\ahtoh\WebstormProjects\app\Chat\src\component\Navbar\NewDialogsForm" />
       <recent name="C:\Users\ahtoh\WebstormProjects\app\Chat\src\component\Dialogs\DialogsMessages" />
-      <recent name="C:\Users\ahtoh\WebstormProjects\app\Chat\src\component\Home" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -138,7 +139,9 @@
       <workItem from="1668911180507" duration="17000" />
       <workItem from="1668991856068" duration="12423000" />
       <workItem from="1669079445002" duration="9850000" />
-      <workItem from="1669166081486" duration="7954000" />
+      <workItem from="1669166081486" duration="8796000" />
+      <workItem from="1669262014923" duration="1471000" />
+      <workItem from="1669337868367" duration="9766000" />
     </task>
     <servers />
   </component>

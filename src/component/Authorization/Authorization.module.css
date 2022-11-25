@@ -9,7 +9,7 @@
     width: 100%;
     height: 100%;
     background: #2d3649;
-    background-image: url('/src/img/backgroundAuthorization.png');
+    background-image: url('/src/img/auth/backgroundAuthorization.png');
     background-repeat: repeat;
 }
 .authorizationContainer{

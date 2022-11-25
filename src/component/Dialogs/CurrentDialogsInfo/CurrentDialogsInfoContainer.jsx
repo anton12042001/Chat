@@ -1,12 +1,14 @@
 import React from 'react';
 import CurrentDialogsInfo from "./CurrentDialogsInfo";
+import cl from './CurrentDialogsInfo.module.css'
 
 
 const CurrentDialogsInfoContainer = ({exitUserFromDialogs,setPopapDeleteUser}) => {
 
     return (
-        <div>
+        <div className={cl.currentDialogsHeaderBody} >
             <CurrentDialogsInfo exitUserFromDialogs={exitUserFromDialogs} setPopapDeleteUser={setPopapDeleteUser}/>
+            <div className={cl.borderHeaderDialogs}></div>
         </div>
     );
 };

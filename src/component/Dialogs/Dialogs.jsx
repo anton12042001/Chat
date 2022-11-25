@@ -82,7 +82,9 @@ const Dialogs = ({exitUserFromDialogs,getUserInfoCurrentDialog,deleteUserFromDia
     return (
         <div className={cl.dialogsBackground} >
             <div className={cl.container}>
-                {/*<div className={cl.dialogsInfo}><CurrentDialogsInfoContainer exitUserFromDialogs={exitUserFromDialogs} setPopapDeleteUser={setPopapDeleteUser}/></div>*/}
+                <div className={cl.dialogsInfo}>
+                    <CurrentDialogsInfoContainer exitUserFromDialogs={exitUserFromDialogs} setPopapDeleteUser={setPopapDeleteUser}/>
+                </div>
                 <div ref={windowHeghtRef}>
                     <div className={cl.lastElement} ref={lastElement}></div>
                     {(messages.length === 0) && <div className={cl.noMessages}>В этом диалоге нет сообщений</div>}
