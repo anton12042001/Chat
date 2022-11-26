@@ -3,6 +3,7 @@ import Home from "./Home";
 import {useSelector} from "react-redux";
 import Loader from "../UI/Loader";
 import {useNavigate} from "react-router-dom";
+import cl from './Home.module.css'
 
 const HomeContainer = () => {
     const {dialogs} = useSelector(state => state.dialogs)
@@ -20,7 +21,7 @@ const HomeContainer = () => {
     }
 
     return (
-        <div>
+        <div className={cl.homeContainer} >
             <Home dialogs={dialogs}/>
         </div>
     );

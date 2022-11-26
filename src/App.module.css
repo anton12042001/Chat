@@ -15,7 +15,8 @@
 }
 
 .appWrapperContent {
-    background-color: rgba(92, 54, 127, 0.05);
+    background: #FFFBF8;
+    min-height: 100vh;
     grid-area: c;
 }
 

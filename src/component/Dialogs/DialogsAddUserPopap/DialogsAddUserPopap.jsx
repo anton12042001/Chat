@@ -20,15 +20,15 @@ const DialogsAddUserPopap = ({setVisiblePopap,addUserToDialogs,userFound,userAdd
 
     return (
         <div className={cl.formContainer} >
-            <form onClick={() => setVisiblePopap(false)}  className={cl.form} onSubmit={handleSubmit(onSubmit)}>
-                <div onClick={(e) => e.stopPropagation()} className={cl.imputButton} >
+            <form onClick={() => setVisiblePopap(false)} className={cl.form} onSubmit={handleSubmit(onSubmit)}>
+                <div onClick={(e) => e.stopPropagation()} className={cl.inputButton} >
                     <div className={cl.input} >
-                        Введите id пользователя, которого хотите добавить
-                        <input  {...register("userId")}/>
+                        <div className={cl.titleInput}>Введите id  пользователя </div>
+                        <input placeholder='XXX-XXX-XX'  {...register("userId")}/>
                         {userFound && <div>Данный пользователь уже есть в этой беседе</div>}
                         {userAdded && <div>Пользователь успешно добавлен</div>}
                     </div>
-                    <button type={"submit"}>Добавить пользователя</button>
+                    <button className={cl.addUserButton} type={"submit"}>Добавить</button>
                 </div>
             </form>
         </div>

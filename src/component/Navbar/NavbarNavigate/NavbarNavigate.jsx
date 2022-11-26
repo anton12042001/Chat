@@ -12,7 +12,6 @@ import {useLocation, useNavigate} from "react-router-dom";
 const NavbarNavigate = (currentDialogs) => {
     const navigate = useNavigate()
     const location = useLocation()
-    console.log(location)
 
 
     return (

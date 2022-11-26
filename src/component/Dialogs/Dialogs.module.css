@@ -15,7 +15,6 @@
 }
 
 .messagesElement {
-
     position: relative;
     display: flex;
     flex-direction: column;
@@ -94,6 +93,7 @@
 }
 
 .dialogsBackground {
+
     background: #FFFBF8;
     /*background-image: url('/src/img/dialogs/backgroundDialogs.png');*/
     /*background-size: 500px;*/
@@ -121,7 +121,7 @@
     flex-direction: column;
 }
 .addUserToChat {
-    margin: 15px 0 30px 50px;
+
 }
 
 .createdAt {
@@ -212,5 +212,8 @@
     margin: 0 auto;
     border: none;
     max-width: 67px;
-
 }
+.messagesItems{
+    margin: 50px 0 0 0
+}
+

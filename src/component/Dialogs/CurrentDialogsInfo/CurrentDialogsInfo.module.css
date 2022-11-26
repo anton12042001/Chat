@@ -69,3 +69,15 @@
     color: #000000;
     margin: 0 0 30px 0;
 }
+.addUsersButton{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: #000000;
+    border: none;
+    background: none;
+}
+.addUserToChat{
+
+}
