@@ -30,8 +30,8 @@ To start the project you will need:
 
 Contact me so that I can send you an access key with a database (it will not work without a key)
 
-npm install
-npm start
+### `npm install`
+### `npm start`
 Runs the app in the development mode.
 Open http://localhost:3000 to view it in your browser.
 
