@@ -16,15 +16,15 @@ const FormAuthLogin = (props) => {
     }
 
     return (
-        <div className={cl.authFormLogin} >
-            <form onSubmit={handleSubmit(onSubmit)}>
+        <div >
+            <form className={cl.authFormLogin}  onSubmit={handleSubmit(onSubmit)}>
                 <div>
-                    <input placeholder={"Введите email"} {...register("email")} type="email"/>
+                    <input className={cl.signInInputEmail}  placeholder={"Введите email"} {...register("email")} type="email"/>
                 </div>
                 <div>
-                    <input  placeholder={"Введите пароль"} {...register("password")} type="password"/>
+                    <input className={cl.signInInputPassword}  placeholder={"Введите пароль"} {...register("password")} type="password"/>
                 </div>
-                <button type={"submit"}>Войти</button>
+                <button className={cl.buttonSignIp}  type={"submit"}>Войти</button>
             </form>
         </div>
     );

@@ -1,5 +1,6 @@
 import React from 'react';
 import {useForm} from "react-hook-form";
+import cl from './Authorization.module.css'
 
 const FormAuthRegister = (props) => {
     const {
@@ -14,14 +15,15 @@ const FormAuthRegister = (props) => {
     }
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form className={cl.formSignUp} onSubmit={handleSubmit(onSubmit)}>
+
             <div>
-                <input disabled={(props.email)}  placeholder={"Введите email"}  {...register("email")} type="email"/>
+                <input className={cl.inputSignUpEmail}  disabled={(props.email)}  placeholder={"Введите email"}  {...register("email")} type="email"/>
             </div>
             <div>
-                <input disabled={(props.email)} placeholder={"Введите пароль"}  {...register("password")} type="password"/>
+                <input className={cl.inputSignUpPassword} disabled={(props.email)} placeholder={"Введите пароль"}  {...register("password")} type="password"/>
             </div>
-            <button disabled={(props.email)} type={"submit"}>Зарегистрироваться</button>
+            <button className={cl.buttonSignUp} disabled={(props.email)} type={"submit"}>Регистрироваться</button>
         </form>
     );
 };

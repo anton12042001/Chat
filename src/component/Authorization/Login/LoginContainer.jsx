@@ -5,6 +5,7 @@ import {setUser} from "../../../reduxToolkit/slices/userSlice";
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import {getDialogs, setUsersInFirestore} from "./loginUtils";
+import cl from './Login.module.css'
 
 const LoginContainer = () => {
 
@@ -19,7 +20,6 @@ const LoginContainer = () => {
 
 
 
-//commit task
     const handleLogin = (email, password) => {
         loginAPI(email, password)
             .then(async ({user}) => {
@@ -46,7 +46,7 @@ const LoginContainer = () => {
 
 
     return (
-        <div>
+        <div className={cl.signInWrapper} >
             <Login handleLogin={handleLogin}/>
         </div>
     );

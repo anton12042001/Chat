@@ -6,6 +6,7 @@ import PersonalCubnetContainer from "../PersonalCubnet/PersonalCubnetContainer";
 const PopapCurrentUser = () => {
     return (
         <div onClick={(e) => e.stopPropagation()} className={cl.headerBlock} >
+            <div className={cl.titlePage} >Настройки</div>
            <CurrentUser/>
             <PersonalCubnetContainer/>
         </div>

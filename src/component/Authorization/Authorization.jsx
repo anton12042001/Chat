@@ -19,8 +19,10 @@ const Authorization = () => {
             <div className={cl.authIcon} ><img src={iconAuth}/></div>
             <div className={cl.authTitle} >Anton Online</div>
             {isReguster === true ? <RegisterContainer/> : (isReguster === false) && <LoginContainer/>}
-            <button onClick={login} >Войти в систему</button>
-            <button onClick={register} >Зарегистрироваться</button>
+            <div className={cl.buttonsAuth} >
+                <button className={cl.signIn} onClick={login} >Войти</button>
+                <button className={cl.signUp} onClick={register}>Регистрация</button>
+            </div>
         </div>
     );
 };

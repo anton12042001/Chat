@@ -1,5 +1,5 @@
 .containerPersonalCubnet {
-    border: 1px solid black;
+
 }
 
 .displayName {
@@ -7,7 +7,10 @@
 }
 
 .id {
-
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: rgba(0, 0, 0, 0.65);
 }
 
 
@@ -15,10 +18,12 @@
     margin: 0 0 25px 0;
 }
 .idMeaning{
+    color: rgba(0, 0, 0, 1);
     font-weight: bold;
 }
 .infoId{
     cursor: pointer;
+    margin: 0 0 26px 0;
     position: relative;
     width: 300px;
     display: flex;
@@ -26,15 +31,27 @@
     font-size: 14px;
 }
 .popapInfoId{
+    padding: 13px 35px;
     display: flex;
-    justify-content: center;
-    text-align: center;
-    align-items: center;
-    border: 1px solid black;
-    width: 350px;
-    height: 250px;
-    background: white;
+    width: 266px;
+    height: 84px;
+    background: #2B3445;
+    border-radius: 15px;
     position: absolute;
     top: 15px;
     left: 300px;
+    color: #FFFFFF;
+}
+.popapInfoId img{
+    height: 19px;
+    width: 6px;
+}
+.idInfo{
+    font-size: 16px;
+    line-height: 19px;
+    text-decoration-line: underline;
+    color: rgba(43, 52, 69, 0.6);
+}
+.imgSendId{
+    margin: 0 12px 0 0;
 }

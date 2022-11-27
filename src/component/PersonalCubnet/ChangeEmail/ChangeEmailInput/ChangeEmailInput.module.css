@@ -1,0 +1,19 @@
+.changeEmailInput{
+    width: 256px;
+    height: 40px;
+    border: 1px solid rgba(43, 52, 69, 0.8);
+    border-radius: 5px;
+    padding: 0 15px;
+    margin: 0 140px 0 0;
+}
+.saveShangeEmailButton{
+    width: 140px;
+    height: 40px;
+    background: #ECC263;
+    border-radius: 7.0018px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: #2B3445;
+    border: none;
+}

@@ -5,6 +5,7 @@ import {useNavigate} from "react-router-dom";
 import {removeDialogs} from "../../../reduxToolkit/slices/dialogsIdSlice";
 import {removeDialogsList} from "../../../reduxToolkit/slices/showDialogs";
 import {removeMessages} from "../../../reduxToolkit/slices/messagesSlice";
+import cl from './CurrentUser.module.css'
 
 
 const CurrentUser = () => {
@@ -29,7 +30,7 @@ const CurrentUser = () => {
 
     return (
         <div  >
-            {email ? <button onClick={Logout}>Logout {email}</button> : <button onClick={redirectToLogin} >Войти</button>}
+            {email ? <button className={cl.logoutButton}  onClick={Logout}>Выйти из аккаунта {email}</button> : <button onClick={redirectToLogin} >Войти</button>}
         </div>
     );
 };

@@ -1,5 +1,6 @@
 import React from 'react';
 import {useForm} from "react-hook-form";
+import cl from './ChangeEmailInput.module.css'
 
 const ChangeEmailInput = (props) => {
 
@@ -15,8 +16,8 @@ const ChangeEmailInput = (props) => {
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
-            <input {...register("email")} type="email"/>
-            <button type={"submit"}>Сохранить</button>
+            <input placeholder="Е-mail" className={cl.changeEmailInput} {...register("email")} type="email"/>
+            <button className={cl.saveShangeEmailButton}  type={"submit"}>Сохранить</button>
         </form>
     );
 };
