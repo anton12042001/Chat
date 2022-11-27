@@ -11,7 +11,7 @@ Registration, authorization, email confirmation, password change, login change, 
 
 ## Project screenshots
 ![image](https://user-images.githubusercontent.com/98453976/204116482-3b49887d-fbd2-45d4-9be3-2ef26f782ef1.png)
-![image](https://user-images.githubusercontent.com/98453976/204116493-a0ee21d4-92fe-4cc5-b887-d70540caa4d6.png)
+![image](https://user-images.githubusercontent.com/98453976/204116793-7e6c65f0-96bb-457b-b5b4-b96d4bfa3ae2.png)
 ![image](https://user-images.githubusercontent.com/98453976/204116439-cf4b6657-1d25-44fa-be9d-00be573cd56d.png)
 ![image](https://user-images.githubusercontent.com/98453976/204116432-ee3e473d-6e09-4250-ae21-b16a578d9dd7.png)
 ### The same dialogue from the user side
