@@ -9,7 +9,7 @@ This project is a real-time chat. It features the creation of conversations. The
 
 Registration, authorization, email confirmation, password change, login change, creating private/public conversations, adding a user or excluding him from a conversation by an administrator
 
-## Project screenshots
+## `Project screenshots`
 ![image](https://user-images.githubusercontent.com/98453976/204116482-3b49887d-fbd2-45d4-9be3-2ef26f782ef1.png)
 ![image](https://user-images.githubusercontent.com/98453976/204116793-7e6c65f0-96bb-457b-b5b4-b96d4bfa3ae2.png)
 ![image](https://user-images.githubusercontent.com/98453976/204116439-cf4b6657-1d25-44fa-be9d-00be573cd56d.png)
